@@ -1,0 +1,7 @@
+com/project/pin/entity/Admin.class
+com/project/pin/entity/Compra.class
+com/project/pin/entity/Livro.class
+com/project/pin/entity/Autor.class
+com/project/pin/entity/Usuario.class
+com/project/pin/entity/Comprador.class
+com/project/pin/PinApplication.class

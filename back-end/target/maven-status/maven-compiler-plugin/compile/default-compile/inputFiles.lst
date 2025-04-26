@@ -1,0 +1,7 @@
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/PinApplication.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Admin.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Autor.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Compra.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Comprador.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Livro.java
+/Applications/Projetos/pin2/back-end/src/main/java/com/project/pin/entity/Usuario.java
