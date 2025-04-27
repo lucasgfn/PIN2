@@ -40,5 +40,5 @@ public class Comprador extends Usuario{
     private boolean receneuDesconto = false;
 
     @OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Compra> compras;
+    private List<Compra> listCompras;
 }

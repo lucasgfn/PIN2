@@ -37,4 +37,7 @@ public class Livro {
     @OneToMany(mappedBy = "livro")
     private List<ItemCompra> itensCompra;
 
+    @ManyToOne
+    @JoinColumn(name = "id_autor", nullable = false)
+    private Autor autor;
 }

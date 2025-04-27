@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "compra")
 public class Compra {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_compra")
