@@ -1,9 +1,17 @@
 package com.project.pin.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter @Getter
 @Entity
 @Table(name = "autor")
 public class Autor {

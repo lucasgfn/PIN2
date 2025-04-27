@@ -1,4 +1,7 @@
 package com.project.pin.repository;
 
-public interface AutorRepository <Autor, Long> {
+import com.project.pin.entity.Autor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AutorRepository extends JpaRepository<Autor, Long> {
 }

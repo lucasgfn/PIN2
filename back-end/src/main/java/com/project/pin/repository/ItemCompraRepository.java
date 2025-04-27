@@ -1,4 +1,7 @@
 package com.project.pin.repository;
 
-public interface ItemCompraRepository <ItemCompra, Long> {
+import com.project.pin.entity.ItemCompra;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItemCompraRepository extends JpaRepository<ItemCompra, Long> {
 }

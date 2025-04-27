@@ -1,4 +1,7 @@
 package com.project.pin.repository;
 
-public interface LivroRepository <Livro, Long> {
+import com.project.pin.entity.Livro;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LivroRepository extends JpaRepository<Livro, Long> {
 }

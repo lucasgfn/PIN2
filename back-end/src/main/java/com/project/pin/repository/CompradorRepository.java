@@ -1,4 +1,7 @@
 package com.project.pin.repository;
 
-public interface CompradorRepository <Comprador, Long>{
+import com.project.pin.entity.Comprador;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompradorRepository extends JpaRepository<Comprador, Long> {
 }
