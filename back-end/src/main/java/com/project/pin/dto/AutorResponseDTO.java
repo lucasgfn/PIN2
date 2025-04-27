@@ -10,6 +10,16 @@ public record AutorResponseDTO(
         String nome,
         String sobre,
         String img,
-        List<Livro> listLivrosDTO
-        ){}
+        List<Livro> listLivros
+        )
+
+{
+        public AutorResponseDTO(Autor autor) {
+                this(autor.getId(), autor.getNome(), autor.getSobre(), autor.getImg(), autor.getListLivros());
+        }
+
+
+
+}
+
 

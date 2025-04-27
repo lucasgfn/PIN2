@@ -1,4 +1,4 @@
 package com.project.pin.dto;
 
-public class LivroResponseDTO {
+public record LivroResponseDTO() {
 }
