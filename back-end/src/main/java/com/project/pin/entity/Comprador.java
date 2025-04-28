@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,6 +21,7 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("COMPRADOR")
 public class Comprador extends Usuario{
+    @NotBlank(message = "O campo (telefone) não pode estar vazio")
     @Column(name = "telefone") @NonNull
     private String telefone;
     @Column(name = "rua")
