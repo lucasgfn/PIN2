@@ -1,7 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="17f63e11-d717-42db-b0a6-9ff3cf51d91e" name="Changes" comment="" />
+    <list default="true" id="17f63e11-d717-42db-b0a6-9ff3cf51d91e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/PinApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/controller/AutorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/dto/AutorRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/dto/AutorResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/dto/CompradorRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/dto/LivroRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/dto/LivroResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Autor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Compra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Comprador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/ItemCompra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Livro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/entity/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/exceptions/ErrorMessageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/exceptions/ExceptionHandlerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/exceptions/UserFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/AutorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/CompraRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/CompradorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/ItemCompraRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/repository/LivroRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/service/AutorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/pin/service/CompradorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/static/images/default-img-profile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/project/pin/PinApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/PinApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/controller/AutorController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/dto/AutorRequestDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/dto/AutorResponseDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/dto/LivroRequestDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/dto/LivroResponseDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Admin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Autor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Compra.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Comprador.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/ItemCompra.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Livro.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/entity/Usuario.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/AdminRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/AutorRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/CompraRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/CompradorRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/ItemCompraRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/repository/LivroRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/com/project/pin/service/AutorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/classes/static/images/default-img-profile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/pin-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/pin-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.project.pin.PinApplicationTests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/surefire-reports/com.project.pin.PinApplicationTests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/target/test-classes/com/project/pin/PinApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/PinApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/controller/AutorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/dto/AutorRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/dto/AutorResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/dto/CompradorRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/dto/LivroRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/dto/LivroResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Autor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Compra.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Comprador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/ItemCompra.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Livro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/entity/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/exceptions/ErrorMessageDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/exceptions/ExceptionHandlerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/exceptions/UserFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/AdminRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/AutorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/CompraRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/CompradorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/ItemCompraRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/repository/LivroRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/service/AutorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/com/project/pin/service/CompradorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/static/images/default-img-profile.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/com/project/pin/PinApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/PinApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/controller/AutorController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/dto/AutorRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/dto/AutorResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/dto/LivroRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/dto/LivroResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Autor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Compra.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Comprador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/ItemCompra.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Livro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/entity/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/AdminRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/AutorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/CompraRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/CompradorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/ItemCompraRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/repository/LivroRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/com/project/pin/service/AutorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/classes/static/images/default-img-profile.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/pin-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/pin-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/surefire-reports/TEST-com.project.pin.PinApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/surefire-reports/com.project.pin.PinApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/target/test-classes/com/project/pin/PinApplicationTests.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,25 +154,26 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2wHlsPfR7ZF30it9hc0BCKV47dI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Applications/Projetos/pin2",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/clara/PIN2/backend&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
