@@ -3,6 +3,7 @@ package com.project.pin.service;
 import com.project.pin.dto.AutorRequestDTO;
 import com.project.pin.dto.AutorResponseDTO;
 import com.project.pin.entity.Autor;
+import com.project.pin.utils.Image;
 import com.project.pin.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,6 @@ import java.util.stream.Collectors;
 public class AutorService {
     @Autowired
     private AutorRepository autorRepository;
-    private static final String DEFAULT_IMAGE_URL = "back-end/src/main/resources/static/images/default-img-profile.jpg";
 
     public AutorResponseDTO cadastrarAutor(@Valid AutorRequestDTO autorRequestDTO) {
         Autor newAutor = new Autor();
@@ -37,7 +37,7 @@ public class AutorService {
         }
 
         Autor savedAutor = autorRepository.save(newAutor);
-        return new AutorResponseDTO(savedAutor.getId(), savedAutor.getNome(), savedAutor.getSobre(), getImageUrl(savedAutor), savedAutor.getListLivros());
+        return new AutorResponseDTO(savedAutor.getId(), savedAutor.getNome(), savedAutor.getSobre(), Image.getImageAutor(savedAutor), savedAutor.getListLivros());
     }
 
 
@@ -91,12 +91,5 @@ public class AutorService {
         }
         return new AutorResponseDTO(autor.getId(), autor.getNome(), autor.getSobre(), autor.getImg(), autor.getListLivros());
     }
-
-    //DESSA FORMA PODEMOS RECUPERAR A IMAGEM NO FRONT
-    private String getImageUrl(Autor autor) {
-        return (autor.getImg() != null && !autor.getImg().isEmpty()) ? autor.getImg() : DEFAULT_IMAGE_URL;
-    }
-
-
 
 }

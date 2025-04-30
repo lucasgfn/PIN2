@@ -35,7 +35,7 @@ public class Comprador extends Usuario{
     @Column(name = "nivel")
     private int nivel = 1;
     @Column(name = "desconto")
-    private boolean receneuDesconto = false;
+    private boolean recebeuDesconto = false;
 
     @OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Compra> listCompras;
