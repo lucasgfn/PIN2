@@ -1,9 +1,10 @@
 package com.project.pin.service;
 
-import com.project.pin.dto.AutorRequestDTO;
-import com.project.pin.dto.AutorResponseDTO;
+import com.project.pin.dto.Autor.AutorRequestDTO;
+import com.project.pin.dto.Autor.AutorResponseDTO;
+import com.project.pin.dto.Livro.LivroResponseDTO;
+import com.project.pin.dto.Livro.LivroResumoDTO;
 import com.project.pin.entity.Autor;
-import com.project.pin.utils.Image;
 import com.project.pin.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,9 @@ public class AutorService {
 
         newAutor.setNome(autorRequestDTO.nome());
         newAutor.setSobre(autorRequestDTO.sobre());
-        if (autorRequestDTO.img() != null && autorRequestDTO.img().isEmpty()){  //GARANTE QUE A IMAGEM DEFAULT NAO SEJA SALVA NO BD
+        if (autorRequestDTO.img() != null && autorRequestDTO.img().isEmpty()) {  //GARANTE QUE A IMAGEM DEFAULT NAO SEJA SALVA NO BD
             newAutor.setImg(autorRequestDTO.img());
-        }else{
+        } else {
             newAutor.setImg(null);
         }
 
@@ -63,7 +64,7 @@ public class AutorService {
 
 
     public ResponseEntity<Object> deletar(Long id) {
-        if(autorRepository.existsById(id)){
+        if (autorRepository.existsById(id)) {
             autorRepository.deleteById(id);
             return ResponseEntity.noContent().build();  //RETURN 204
         }
@@ -86,10 +87,18 @@ public class AutorService {
     //-------------------------------------- AUX --------------------------------------
 
     private AutorResponseDTO toResponseDTO(Autor autor) {
-        if(autor == null){
+        if (autor == null) {
             return null;
         }
-        return new AutorResponseDTO(autor.getId(), autor.getNome(), autor.getSobre(), autor.getImg(), autor.getListLivros());
-    }
+        return new AutorResponseDTO(
+                autor.getId(),
+                autor.getNome(),
+                autor.getSobre(),
+                autor.getImg() != null ? autor.getImg() : "/images/default-img-profile.jpg",  // Garantir imagem padrão
+                autor.getListLivros().stream()
+                        .map(LivroResumoDTO::new)
+                        .collect(Collectors.toList())
 
+        );
+    }
 }

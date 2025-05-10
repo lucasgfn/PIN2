@@ -1,16 +1,5 @@
 package com.project.pin.service;
 
-import com.project.pin.dto.CompradorRequestDTO;
-import com.project.pin.dto.CompradorResponseDTO;
-import com.project.pin.entity.Comprador;
-import com.project.pin.exceptions.UserFoundException;
-import com.project.pin.mapper.CompradorMapper;
-import com.project.pin.repository.CompradorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 /*
 @Service
 public class CompradorService {

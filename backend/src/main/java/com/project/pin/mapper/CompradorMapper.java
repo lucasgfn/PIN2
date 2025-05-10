@@ -1,6 +1,6 @@
 package com.project.pin.mapper;
 
-import com.project.pin.dto.CompradorRequestDTO;
+import com.project.pin.dto.Comprador.CompradorRequestDTO;
 import com.project.pin.entity.Comprador;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;

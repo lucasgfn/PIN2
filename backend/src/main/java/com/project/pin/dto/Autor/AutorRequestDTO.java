@@ -1,4 +1,4 @@
-package com.project.pin.dto;
+package com.project.pin.dto.Autor;
 
 import com.project.pin.entity.Livro;
 

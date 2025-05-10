@@ -1,4 +1,4 @@
-package com.project.pin.dto;
+package com.project.pin.dto.Comprador;
 
 
 public record CompradorRequestDTO(Long id, String nome, String email, String cpf, String username

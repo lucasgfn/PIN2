@@ -1,8 +1,8 @@
 package com.project.pin.controller;
 
 
-import com.project.pin.dto.AutorRequestDTO;
-import com.project.pin.dto.AutorResponseDTO;
+import com.project.pin.dto.Autor.AutorRequestDTO;
+import com.project.pin.dto.Autor.AutorResponseDTO;
 import com.project.pin.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

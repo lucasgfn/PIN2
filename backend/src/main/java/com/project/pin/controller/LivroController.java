@@ -1,7 +1,7 @@
 package com.project.pin.controller;
 
-import com.project.pin.dto.LivroRequestDTO;
-import com.project.pin.dto.LivroResponseDTO;
+import com.project.pin.dto.Livro.LivroRequestDTO;
+import com.project.pin.dto.Livro.LivroResponseDTO;
 import com.project.pin.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

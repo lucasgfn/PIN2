@@ -1,6 +1,5 @@
-package com.project.pin.dto;
+package com.project.pin.dto.Livro;
 
-import com.project.pin.entity.Autor;
 import com.project.pin.entity.Livro;
 
 public record LivroResponseDTO(
@@ -12,23 +11,22 @@ public record LivroResponseDTO(
         int anoPublicado,
         double precoUnit,
         String img,
+        Long idAutor,
         String nomeAutor
-    )
-{
+) {
     public LivroResponseDTO(Livro livro) {
         this(
                 livro.getId(),
+                livro.getIbsn(),
                 livro.getNomeLivro(),
                 livro.getSinopse(),
-                livro.getIbsn(),
                 livro.getPages(),
                 livro.getAnoPublicado(),
                 livro.getPrecoUnit(),
-                livro.getImg(),
+                livro.getImg() != null ? livro.getImg() : "/images/default-img-book.jpg", // Usando imagem padrão
+                livro.getAutor().getId(),
                 livro.getAutor().getNome()
         );
     }
 
 }
-
-

@@ -1,9 +1,8 @@
 package com.project.pin.service;
 
 
-import com.project.pin.dto.AutorResponseDTO;
-import com.project.pin.dto.LivroRequestDTO;
-import com.project.pin.dto.LivroResponseDTO;
+import com.project.pin.dto.Livro.LivroRequestDTO;
+import com.project.pin.dto.Livro.LivroResponseDTO;
 import com.project.pin.entity.Autor;
 import com.project.pin.entity.Livro;
 import com.project.pin.repository.AutorRepository;
@@ -121,6 +120,7 @@ public class LivroService {
                 livro.getAnoPublicado(),
                 livro.getPrecoUnit(),
                 livro.getImg(),
+                livro.getAutor().getId(),
                 livro.getAutor().getNome()
                 );
     }

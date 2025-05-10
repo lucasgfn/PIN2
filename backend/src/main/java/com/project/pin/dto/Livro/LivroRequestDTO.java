@@ -1,4 +1,4 @@
-package com.project.pin.dto;
+package com.project.pin.dto.Livro;
 
 import javax.validation.constraints.NotBlank;
 
