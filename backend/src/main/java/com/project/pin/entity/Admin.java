@@ -16,5 +16,5 @@ import lombok.Setter;
 @DiscriminatorValue("ADMIN")
 public class Admin extends Usuario {
     @Column(name = "tipo_admin")
-    private String tipo_admin;
+    private boolean tipo_admin = true;
 }

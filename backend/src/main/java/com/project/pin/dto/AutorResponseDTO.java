@@ -17,6 +17,8 @@ public record AutorResponseDTO(
         public AutorResponseDTO(Autor autor) {
                 this(autor.getId(), autor.getNome(), autor.getSobre(), autor.getImg(), autor.getListLivros());
         }
+
+
 }
 
 

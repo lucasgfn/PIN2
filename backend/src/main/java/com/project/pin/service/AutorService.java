@@ -37,7 +37,7 @@ public class AutorService {
         }
 
         Autor savedAutor = autorRepository.save(newAutor);
-        return new AutorResponseDTO(savedAutor.getId(), savedAutor.getNome(), savedAutor.getSobre(), Image.getImageAutor(savedAutor), savedAutor.getListLivros());
+        return new AutorResponseDTO(savedAutor);
     }
 
 
