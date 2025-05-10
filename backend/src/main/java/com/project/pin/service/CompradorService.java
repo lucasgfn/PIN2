@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
+/*
 @Service
 public class CompradorService {
     @Autowired
@@ -40,6 +40,7 @@ public class CompradorService {
         this.compradorRepository.delete(compradorExistente.get());
     }
 
+
     @Transactional
     public Comprador updateComprador(Long id, CompradorRequestDTO dto) {
         if (dto == null) {
@@ -53,6 +54,8 @@ public class CompradorService {
 
         return compradorRepository.save(comprador);
     }
+
+
 
     public CompradorResponseDTO getInfosComprador(Long id) {
         Comprador comprador = compradorRepository.findById(id)
@@ -75,4 +78,7 @@ public class CompradorService {
                 comprador.isRecebeuDesconto());
     }
 
+
+
 }
+    */
