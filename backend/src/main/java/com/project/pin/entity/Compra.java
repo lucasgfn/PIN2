@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +20,9 @@ import java.util.List;
 public class Compra {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_compra")
-    private Long id_compra;
+    private Long id;
     @Column(name = "dataCompra")
-    private Date dataCompra;
+    private LocalDateTime dataCompra;
     @Column(name = "total")
     private double totalCompra;
 
@@ -30,6 +32,7 @@ public class Compra {
 
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemCompra> itensCompra;
+
 
 
 }

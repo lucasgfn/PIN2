@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,6 +20,9 @@ public class ItemCompra {
     @Column(name = "id_item_compra")
     private Long id;
 
+    @Column(name = "precoUnit")
+    private double precoUnit;
+
     @ManyToOne
     @JoinColumn(name = "id_compra", nullable = false)
     private Compra compra;
@@ -28,5 +33,6 @@ public class ItemCompra {
 
     @Column(name = "quantidade")
     private Integer quantidade;
+
 
 }

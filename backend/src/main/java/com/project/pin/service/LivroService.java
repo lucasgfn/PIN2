@@ -43,8 +43,8 @@ public class LivroService {
         }
         newLivro.setAutor(autor);
 
-        Livro saved = livroRepository.save(newLivro);
-        return new LivroResponseDTO(saved);
+        livroRepository.save(newLivro);
+        return new LivroResponseDTO(newLivro);
     }
 
 
