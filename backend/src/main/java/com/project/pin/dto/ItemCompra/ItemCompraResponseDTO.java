@@ -1,23 +1,15 @@
 package com.project.pin.dto.ItemCompra;
 
-import com.project.pin.entity.ItemCompra;
+import com.project.pin.entity.Livro;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-public record ItemCompraResponseDTO(
-        Long id,
-        Long livroId,
-        String nomeLivro,
-        int quantidade,
-        double precoUnit
-) {
-
-    public ItemCompraResponseDTO(ItemCompra item){
-        this(
-                item.getId(),
-                item.getLivro().getId(),
-                item.getLivro().getNomeLivro(),
-                item.getQuantidade(),
-                item.getPrecoUnit()
-
-        );
-    }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ItemCompraResponseDTO {
+    private Livro livro;
+    private int quantidade;
+    private double precoUnit;
 }
