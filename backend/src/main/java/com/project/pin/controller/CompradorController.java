@@ -22,19 +22,20 @@ public class CompradorController {
         return new ResponseEntity<>(criado, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id) {
         compradorService.deletarComprador(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body("Comprador deletado com sucesso.");
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<Comprador> atualizar(@PathVariable Long id, @RequestBody CompradorRequestDTO dto) {
         Comprador atualizado = compradorService.updateComprador(id, dto);
         return ResponseEntity.ok(atualizado);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("listar/{id}")
     public ResponseEntity<CompradorResponseDTO> buscar(@PathVariable Long id) {
         CompradorResponseDTO dto = compradorService.getInfosComprador(id);
         return ResponseEntity.ok(dto);
