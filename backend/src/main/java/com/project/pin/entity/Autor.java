@@ -1,5 +1,6 @@
 package com.project.pin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Autor {
     @Column(name = "img")
     private String img;
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Livro> listLivros;
 
 

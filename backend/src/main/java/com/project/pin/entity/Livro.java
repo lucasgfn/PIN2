@@ -1,5 +1,6 @@
 package com.project.pin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,6 +36,7 @@ public class Livro {
     private String img;
 
     @OneToMany(mappedBy = "livro")
+    @JsonIgnore
     private List<ItemCompra> itensCompra;
 
     @ManyToOne
