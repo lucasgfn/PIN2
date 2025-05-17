@@ -16,11 +16,11 @@ Thumbs.db
 # Ignorar arquivos de compilação
 dist/
 build/
+target/
 
 # Ignorar arquivos temporários
 *.tmp
 *.temp
 
 # Ignorar arquivos de backup
-*~
 .idea
