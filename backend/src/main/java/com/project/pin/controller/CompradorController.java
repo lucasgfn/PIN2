@@ -33,7 +33,7 @@ public class CompradorController {
         Comprador atualizado = compradorService.updateComprador(id, dto);
         return ResponseEntity.ok(atualizado);
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<CompradorResponseDTO> buscar(@PathVariable Long id) {
         CompradorResponseDTO dto = compradorService.getInfosComprador(id);
