@@ -8,6 +8,7 @@ import com.project.pin.mapper.CompradorMapper;
 import com.project.pin.repository.CompradorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,12 +21,16 @@ public class CompradorService {
     @Autowired
     private CompradorMapper compradorMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Comprador cadastrarComprador(Comprador comprador) {
         this.compradorRepository.findByCpfOrUsername(comprador.getCpf(), comprador.getUsername())
                 .ifPresent((user) -> {
                     throw new UserFoundException();
                 });
 
+        comprador.setPassword(passwordEncoder.encode(comprador.getPassword()));
         return this.compradorRepository.save(comprador);
     }
 
