@@ -1,6 +1,17 @@
 package com.project.pin.service;
 
-/*
+import com.project.pin.dto.Comprador.CompradorRequestDTO;
+import com.project.pin.dto.Comprador.CompradorResponseDTO;
+import com.project.pin.entity.Comprador;
+import com.project.pin.exceptions.UserFoundException;
+import com.project.pin.mapper.CompradorMapper;
+import com.project.pin.repository.CompradorRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
 @Service
 public class CompradorService {
     @Autowired
@@ -37,7 +48,7 @@ public class CompradorService {
         }
 
         Comprador comprador = compradorRepository.findById(id)
-                .orElseThrow(UserFoundException::new);
+                .orElseThrow(() -> new IllegalArgumentException("Comprador não encontrado"));
 
         compradorMapper.updateFromDto(dto, comprador);
 
@@ -67,7 +78,5 @@ public class CompradorService {
                 comprador.isRecebeuDesconto());
     }
 
-
-
 }
-    */
+
