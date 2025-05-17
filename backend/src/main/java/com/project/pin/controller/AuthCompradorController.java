@@ -25,7 +25,7 @@ public class AuthCompradorController {
     @Autowired
     private AuthCompradorService authCompradorService;
 
-    @PostMapping
+    @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody @Validated AuthCompradorDTO authCompradorDTO, HttpSession session) {
         logger.info("Tentando autenticar o paciente com login: {}", authCompradorDTO.username());
 
