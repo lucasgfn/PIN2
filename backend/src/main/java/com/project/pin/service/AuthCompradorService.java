@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 ;
 
 @Service
-public class AuthComprador{
+public class AuthCompradorService {
 
     @Autowired
     private CompradorRepository compradorRepository;

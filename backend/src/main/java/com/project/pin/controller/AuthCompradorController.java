@@ -2,7 +2,7 @@ package com.project.pin.controller;
 
 import com.project.pin.dto.Comprador.AuthCompradorDTO;
 import com.project.pin.entity.Comprador;
-import com.project.pin.service.AuthComprador;
+import com.project.pin.service.AuthCompradorService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -23,13 +23,13 @@ public class AuthCompradorController {
     private static final Logger logger = LoggerFactory.getLogger(AuthCompradorController.class);
 
     @Autowired
-    private AuthComprador authComprador;
+    private AuthCompradorService authCompradorService;
 
     @PostMapping
     public ResponseEntity<String> login(@RequestBody @Validated AuthCompradorDTO authCompradorDTO, HttpSession session) {
         logger.info("Tentando autenticar o paciente com login: {}", authCompradorDTO.username());
 
-        Comprador comprador = authComprador.autenticar(authCompradorDTO.username(), authCompradorDTO.password());
+        Comprador comprador = authCompradorService.autenticar(authCompradorDTO.username(), authCompradorDTO.password());
 
         if (comprador != null) {
             session.setAttribute("login", comprador.getUsername());
