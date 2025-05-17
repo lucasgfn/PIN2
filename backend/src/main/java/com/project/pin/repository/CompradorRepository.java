@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface CompradorRepository extends JpaRepository<Comprador, Long> {
     Optional<Comprador> findByCpfOrUsername(String cpf, String username);
+    Optional<Comprador> findByUsername(String username);
+
 }
