@@ -1,4 +1,5 @@
 # PROJETO INTEGRADOR 
 
-> URL: 
-https://udesc-my.sharepoint.com/:w:/r/personal/02178611052_edu_udesc_br/_layouts/15/doc2.aspx?sourcedoc=%7B57B75B7F-F8BD-40BC-8335-5BE5983835D2%7D&file=LitQuest-%20Copiar.docx&action=default&mobileredirect=true&DefaultItemOpen=1&ct=1745858894541&wdOrigin=OFFICECOM-WEB.MAIN.REC&cid=027cbf95-9048-4817-a51f-2c3286884dad&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=64695cd2-e5db-4da8-911d-fe743fd59625
+> O LitQuest é um produto de vendas de livros online com o objetivo de atrair e manter o público de leitores, visto que o site proporciona jornada literária com recompensas à medida que o usuário avança no processo de leitura e compra de livros. Para isso, buscamos a imersão do usuário nas atividades propostas pelo site e personalização de suas metas de leitura.  Bem como, facilitar a escolha da próxima compra realizada pelo usuário e proporcionar simplicidade na utilização das ferramentas de compra do site.  
+
+> Realizado por Clara dos Santos Becker e Lucas G. Falcade Nunes
