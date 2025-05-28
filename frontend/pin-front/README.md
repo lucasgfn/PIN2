@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# PIN Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é o frontend da aplicação **PIN2**, desenvolvido com **React 19**, **TypeScript**, **TailwindCSS**, e empacotado com **Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Router DOM](https://reactrouter.com/)
+- [PostCSS](https://postcss.org/)
+- [Autoprefixer](https://github.com/postcss/autoprefixer)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Instalação
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> Requisitos: Node.js (18+ recomendado) e npm 
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Clone o repositório
+git clone https://github.com/lucasgfn/PIN2.git
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# Acesse a pasta
+cd pin-front
+
+# Instale as dependências
+npm install
+
+
+pin-front/
+├── public/                 # Arquivos estáticos (imagens, favicon, etc.)
+├── src/
+│   ├── components/         # Componentes React reutilizáveis (botões, headers, cards, etc.)
+│   ├── pages/              # Páginas principais da aplicação (Home, About, etc.)
+│   ├── routes/             # Configuração e definição das rotas do React Router
+│   ├── style/              # Arquivos CSS e Tailwind (ex: style.css, tailwind.css)
+│   └── App.tsx             # Componente raiz que monta a aplicação
+├── .vscode/                # Configurações específicas do VSCode (ex: launch.json, settings.json)
+├── tailwind.config.js      # Configuração do TailwindCSS (customização de tema, plugins, etc.)
+├── postcss.config.js       # Configuração do PostCSS (plugins como autoprefixer)
+├── tsconfig.json           # Configuração do compilador TypeScript
+└── vite.config.ts          # Configuração do bundler Vite (plugins, paths, etc.)
