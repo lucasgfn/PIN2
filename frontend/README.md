@@ -18,7 +18,7 @@ Frontend do projeto **LitQuest**, desenvolvido com:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/lucasgfn/PIN2.git
 cd pin-front
 
 pin-front/
