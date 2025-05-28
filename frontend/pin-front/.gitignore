@@ -26,3 +26,18 @@ dist-ssr
 buildcache/
 .tsbuildinfo	
 
+# Arquivos de lock antigos (se estiver usando só um gerenciador de pacotes)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Tailwind IntelliSense cache (caso esteja usando)
+.tailwindcss.*
+
+# Sass cache
+.sass-cache
+
+# Arquivos de deploy (opcional)
+.vercel/
+.netlify/
+
