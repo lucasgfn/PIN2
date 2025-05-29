@@ -6,7 +6,7 @@ export function Home(){
     return (
         <>
             <Header/>
-
+           
         </>
 
     );
