@@ -1,20 +1,14 @@
 import './App.css'
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
+import { Home } from './pages/Home'
+import 'swiper/swiper-bundle.css'; 
+
 
 const App: React.FC = () => {
 
 
   return (
     <>
-      <div className="min-h-screen flex flex-col">
-      <Header/>
-          <main className="flex-grow">
-            {/* conteudo */}
-            <h1>Conteudo</h1>
-          </main>
-        <Footer/>
-       </div>
+      <Home/>
     </>
   )
 }
