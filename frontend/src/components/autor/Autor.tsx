@@ -1,51 +1,45 @@
-import { Avatar, Box, Typography } from "@mui/material"
+import { Avatar, Box, Typography } from "@mui/material";
 import { useState } from "react";
 
-interface AutorProps{
-    nome: string;
-    image: string;
+interface AutorProps {
+  nome: string;
+  image: string;
 }
 
-const Autor : React.FC = () => {
-    const [autor, setAutor] = useState<AutorProps | null>(null)
+const Autor: React.FC = () => {
+  const [autor, setAutor] = useState<AutorProps | null>(null);
 
-    const hangleAutorData = () => {
-        console.log("dados do autor")
-    };
+  const handleUserData = () => {
+    console.log("dados do usuário");
+  };
 
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4,
+        cursor: "pointer",
+        width: 250,
+        height: 300,
+        mx: "auto",
+      }}
+      onClick={handleUserData}
+    >
+      <Avatar
+        alt={autor?.nome || "Usuário"}
+        src={autor?.image || ""}
+        sx={{ width: 200, height: 200 }}
+      />
+      <Typography className="text-[#623333] text-center mt-4">
+        <p className="font-[bitter] font-bold text-lg">
+          {autor?.nome || "NOME"}
+        </p>
+      </Typography>
+    </Box>
+  );
+};
 
-    return(
-        <>
-      
-             <Box
-                sx={{
-                    display: 'flex',
-                    padding: "20%",
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    //background: red[500], --> para saber aonde esta
-                    width: 250, height: 300
-                }}
-                onClick={hangleAutorData}
-            > 
-                <Avatar
-                    alt="User"
-                    src="U" 
-                    sx={{
-                        width: 200, height: 200
-                    }}
-                />
-                 <Typography ml={2} className="p-3 align-center text-[#623333]">
-                    {autor?.nome} 
-                    <p className="font-[bitter] font-bold">NOME AUTOR</p>
-                </Typography>
-                
-            </Box>
-         
-        </>
-       
-    )
-}
-
-export default  Autor
+export default Autor;
