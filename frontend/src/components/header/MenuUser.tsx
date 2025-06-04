@@ -44,7 +44,7 @@ const UserMenu: React.FC = () => {
             navigate("/login");
             break;
         case 'Cadastrar':
-            navigate("/cadastrar");
+            navigate("/cadastro");
             break;
         }
     };
