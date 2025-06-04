@@ -1,11 +1,13 @@
 import { Box, Button, Container, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 import logo from "../../assets/logoSemFundo.png";
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm : React.FC = () => {
     const [username, setUsername] = useState('');
     const [senha, setSenha] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -14,8 +16,7 @@ const LoginForm : React.FC = () => {
     }
 
     const handleCadastrar = (e: React.FormEvent) => {
-        //fazer ele ir para cadastro
-        
+        navigate('/cadastro');
     }
 
     return(
