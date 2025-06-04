@@ -21,7 +21,7 @@ const LoginForm : React.FC = () => {
 
     return (
       <>
-        <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "50vh", py: 4 }}>
+        <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "100vh", py: 4 }}>
           <Container maxWidth="sm">
             <Paper
               elevation={3}

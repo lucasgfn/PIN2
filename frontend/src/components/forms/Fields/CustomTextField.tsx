@@ -11,6 +11,7 @@ const CustomTextField = (props: TextFieldProps) => {
         ...props.sx,
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
+            height : 52,
             borderColor: "#623333",
             borderRadius: 25,
           },
