@@ -41,12 +41,12 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "50vh", py: 4 }}>
+    <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "100vh", py: 4 }}>
       <img
         src={logo}
         alt={"logo"}
         style={{
-          marginTop: "50px",
+          marginTop: "20px",
           marginLeft: "80px",
           width: "300px",
           height: "auto",
@@ -57,7 +57,6 @@ const RegisterForm: React.FC = () => {
           elevation={3}
           sx={{
             p: 6,
-            mt: 8,
             borderRadius: 20,
             border: "2px solid",
             borderColor: "#623333",
