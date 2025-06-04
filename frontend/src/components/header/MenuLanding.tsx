@@ -1,6 +1,0 @@
-
-
-const ManuLanging: React.FC = () => {
-
-
-}

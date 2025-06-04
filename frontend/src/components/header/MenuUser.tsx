@@ -2,13 +2,18 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//AUTH
+import { useAuth } from '../../contexts/AuthContext';
+
 
 const UserMenu: React.FC = () => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const isLogged = true;  //MUDAR --> ADD LOGICA DE ENTRADA
+    const { isLogged, login, logout } = useAuth();
+
+    //const isLogged : boolean = true;  //MUDAR --> ADD LOGICA DE ENTRADA
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -32,7 +37,7 @@ const UserMenu: React.FC = () => {
             break;
         case 'Sair': 
             navigate('/home');
-            console.log("Sair");   
+            logout();
             //ADICIONAR LOGICA DE SAIDA 
             break;
         case 'Login':
