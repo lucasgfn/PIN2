@@ -1,6 +1,8 @@
 import { Box, Button, Container, Paper } from "@mui/material";
 import { useState } from "react";
 import CustomTextField from "./Fields/CustomTextField";
+import ImageUpload from "./Fields/ImageUpload";
+import logo from "../../assets/logo_short.jpg";
 
 const RegisterForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -14,25 +16,43 @@ const RegisterForm: React.FC = () => {
   const [telefone, setTelefone] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
-
+  const [imagem, setImagem] = useState<File | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login Sucesso!", {
-      username,
-      senha,
-      nome,
-      endereco,
-      bairro,
-      cep,
-      cidade,
-      estado,
-    });
+
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("senha", senha);
+    formData.append("nome", nome);
+    formData.append("endereco", endereco);
+    formData.append("bairro", bairro);
+    formData.append("cep", cep);
+    formData.append("cidade", cidade);
+    formData.append("estado", estado);
+    formData.append("telefone", telefone);
+    formData.append("email", email);
+    formData.append("cpf", cpf);
+    if (imagem) {
+      formData.append("imagem", imagem);
+    }
+
+    console.log("Formulário enviado com imagem:", imagem);
   };
 
   return (
-    <>
-      <Container maxWidth="lg">
+    <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "50vh", py: 4 }}>
+      <img
+        src={logo}
+        alt={"logo"}
+        style={{
+          marginTop: "50px",
+          marginLeft: "80px",
+          width: "300px",
+          height: "auto",
+        }}
+      />
+      <Container maxWidth="lg" >
         <Paper
           elevation={3}
           sx={{
@@ -41,9 +61,14 @@ const RegisterForm: React.FC = () => {
             borderRadius: 20,
             border: "2px solid",
             borderColor: "#623333",
+            backgroundColor: "#F5F5F5",
           }}
         >
-          <Box component="form" onSubmit={handleSubmit}>
+          <Box
+            component="form"
+            sx={{ backgroundColor: "#F5F5F5" }}
+            onSubmit={handleSubmit}
+          >
             <CustomTextField
               label="Username"
               type="text"
@@ -68,10 +93,7 @@ const RegisterForm: React.FC = () => {
               value={cpf}
               onChange={(e) => {
                 const val = e.target.value;
-                // só números, até 11 dígitos
-                if (/^\d{0,11}$/.test(val)) {
-                  setCpf(val);
-                }
+                if (/^\d{0,11}$/.test(val)) setCpf(val);
               }}
               inputProps={{ maxLength: 11 }}
             />
@@ -99,9 +121,7 @@ const RegisterForm: React.FC = () => {
               value={cep}
               onChange={(e) => {
                 const val = e.target.value;
-                if (/^\d{0,8}$/.test(val)) {
-                  setCEP(val);
-                }
+                if (/^\d{0,8}$/.test(val)) setCEP(val);
               }}
               inputProps={{ maxLength: 8 }}
             />
@@ -117,10 +137,7 @@ const RegisterForm: React.FC = () => {
               value={telefone}
               onChange={(e) => {
                 const val = e.target.value;
-                // só números, até 11 dígitos (DDD + número)
-                if (/^\d{0,11}$/.test(val)) {
-                  setTelefone(val);
-                }
+                if (/^\d{0,11}$/.test(val)) setTelefone(val);
               }}
               inputProps={{ maxLength: 11 }}
             />
@@ -130,10 +147,12 @@ const RegisterForm: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <Box mt={3}>
+              <ImageUpload onImageSelect={(file) => setImagem(file)} />
+            </Box>
           </Box>
         </Paper>
       </Container>
-
       <Box display="flex" justifyContent="center" mt={4}>
         <Button
           variant="outlined"
@@ -153,7 +172,7 @@ const RegisterForm: React.FC = () => {
           Salvar
         </Button>
       </Box>
-    </>
+    </Box>
   );
 };
 
