@@ -1,7 +1,8 @@
 import { Box, Button, Container, Paper, TextField } from "@mui/material";
 import { useState } from "react";
-import logo from "../../assets/logoSemFundo.png";
 import { useNavigate } from 'react-router-dom';
+
+import logo from "../../assets/logoSemFundo.png";
 
 
 const LoginForm : React.FC = () => {

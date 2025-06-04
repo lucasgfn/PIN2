@@ -1,12 +1,19 @@
-import Footer from "../components/footer/Footer";
-import Header from "../components/header/Header";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
 
 //Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
+import { Navigation, Pagination, EffectFade } from 'swiper/modules';
+
 //import {EffectFade} from "swiper/modules";
 
 import { useState } from "react";
-import Autor from "../components/autor/Autor";
+import { Container } from "./components/Container";
 
 
 export function Home(){
@@ -24,10 +31,11 @@ export function Home(){
             <Header/>
                 <main className="flex-grow">
                     {/* conteudo */}
-                    <Swiper className="w-full h-120"
+                    <Swiper 
+                        className="w-full h-120"
+                        modules={[Navigation, Pagination, EffectFade]}
                         effect="fade"
-                        //modules={[EffectFade]}
-                        pagination={{clickable: true}}
+                        pagination={{ clickable: true }}
                         navigation
                     >
                         {imgCarousel.map((item)=> (
@@ -38,8 +46,8 @@ export function Home(){
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    <Autor/>
-
+                    <Container/>
+                    
                 </main>
                 <Footer/>
             </div>

@@ -6,8 +6,13 @@ interface AutorProps {
   image: string;
 }
 
+<<<<<<< HEAD
 const Autor: React.FC = () => {
   const [autor, setAutor] = useState<AutorProps | null>(null);
+=======
+const Autor : React.FC<AutorProps> = () => {
+    const [autor, setAutor] = useState<AutorProps | null>(null)
+>>>>>>> 5b6ef34 (Added Book Container and Cards)
 
   const handleUserData = () => {
     console.log("dados do usuário");
