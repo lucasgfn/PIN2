@@ -32,7 +32,7 @@ public class Livro {
     private int anoPublicado;
     @Column(name = "precoUnit")
     private double precoUnit;
-    @Column(name = "image")
+    @Column(name = "image", length = 1000)
     private String img;
 
     @OneToMany(mappedBy = "livro")

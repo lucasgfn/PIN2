@@ -31,11 +31,8 @@ public class AutorService {
 
         newAutor.setNome(autorRequestDTO.nome());
         newAutor.setSobre(autorRequestDTO.sobre());
-        if (autorRequestDTO.img() != null && autorRequestDTO.img().isEmpty()) {  //GARANTE QUE A IMAGEM DEFAULT NAO SEJA SALVA NO BD
-            newAutor.setImg(autorRequestDTO.img());
-        } else {
-            newAutor.setImg(null);
-        }
+        newAutor.setImg(autorRequestDTO.img());
+
 
         Autor savedAutor = autorRepository.save(newAutor);
         return new AutorResponseDTO(savedAutor);
@@ -43,15 +40,10 @@ public class AutorService {
 
 
     public List<AutorResponseDTO> getAll() {
-        List<Autor> autores = autorRepository.findAll();
-
-        if (autores.isEmpty()) {
-            return List.of();
-        }
-
-        return autores.stream()
+        return autorRepository.findAll().stream()
                 .map(AutorResponseDTO::new)
                 .collect(Collectors.toList());
+
     }
 
 
@@ -94,7 +86,7 @@ public class AutorService {
                 autor.getId(),
                 autor.getNome(),
                 autor.getSobre(),
-                autor.getImg() != null ? autor.getImg() : "/images/default-img-profile.jpg",  // Garantir imagem padrão
+                autor.getImg(),
                 autor.getListLivros().stream()
                         .map(LivroResumoDTO::new)
                         .collect(Collectors.toList())

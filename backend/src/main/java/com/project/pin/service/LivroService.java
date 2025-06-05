@@ -36,11 +36,8 @@ public class LivroService {
         newLivro.setPages(livroRequestDTO.pages());
         newLivro.setAnoPublicado(livroRequestDTO.anoPublicado());
         newLivro.setPrecoUnit(livroRequestDTO.precoUnit());
-        if (livroRequestDTO.img() != null && livroRequestDTO.img().isEmpty()){
-            newLivro.setImg(livroRequestDTO.img());
-        }else{
-            newLivro.setImg(null);
-        }
+        newLivro.setImg(livroRequestDTO.img());
+
         newLivro.setAutor(autor);
 
         livroRepository.save(newLivro);

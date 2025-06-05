@@ -22,12 +22,13 @@ public class Autor {
     @Column(name = "nome_autor")
     private String nome;
     @Column(name = "sobre")
+    @Lob
     private String sobre;
     @Column(name = "img")
     private String img;
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<Livro> listLivros;
+    private List<Livro> listLivros = new ArrayList<>();
 
 
 
