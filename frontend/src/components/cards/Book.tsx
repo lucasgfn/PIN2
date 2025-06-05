@@ -1,13 +1,22 @@
 import { Box, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom";
 
 interface CardProps{
+    id? : number,
     image : string,
     title : string,
     price : number
 }
 
 
-const Book : React.FC<CardProps> = ({image, title, price}) => { 
+const Book : React.FC<CardProps> = ({id, image, title, price}) => { 
+    const navigate = useNavigate();
+
+
+    const hookBook = () => {
+        navigate(`/livro/${id}`);
+    }
+
 
     return (
         <>
@@ -17,6 +26,7 @@ const Book : React.FC<CardProps> = ({image, title, price}) => {
                 background: "red",
                 width: 250, height: 350
             }}
+            onClick={hookBook}
             >
             <img src={image} alt={image} style={{ borderRadius: "10px", background: "blue", width: "100%", height: "250px" }} />
             <Typography variant="h6" sx={{ 

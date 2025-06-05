@@ -13,7 +13,7 @@ import { Navigation, Pagination, EffectFade } from 'swiper/modules';
 //import {EffectFade} from "swiper/modules";
 
 import { useState } from "react";
-import { Container } from "./components/Container";
+import { Container } from "./section/Container";
 
 
 export function Home(){

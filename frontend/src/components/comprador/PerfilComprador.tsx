@@ -1,5 +1,5 @@
 import {  Paper, Box} from "@mui/material";
-import Autor from "../autor/Autor";
+import Autor from "../cards/Autor";
 
 const PerfilComprador: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const PerfilComprador: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Autor/>
+        <Autor nome={""} image={""}/>
       </Paper>
     </Box>
   );

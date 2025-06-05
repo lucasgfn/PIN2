@@ -21,7 +21,7 @@ const sendData = async (booktData: IBookData): Promise<IBookData> => {
 // Hook GET
 export function useBookData() {
     return useQuery({
-        queryKey: ['product-data'],
+        queryKey: ['book-data'],
         queryFn: fetchData,
         retry: 2
     });

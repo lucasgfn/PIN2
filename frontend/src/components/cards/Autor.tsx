@@ -1,21 +1,20 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 interface AutorProps {
+  id? : number;
   nome: string;
   image: string;
 }
 
-<<<<<<< HEAD
-const Autor: React.FC = () => {
-  const [autor, setAutor] = useState<AutorProps | null>(null);
-=======
-const Autor : React.FC<AutorProps> = () => {
-    const [autor, setAutor] = useState<AutorProps | null>(null)
->>>>>>> 5b6ef34 (Added Book Container and Cards)
+const Autor : React.FC<AutorProps> = ({id, nome, image}) => {
+  const navigate = useNavigate();
 
-  const handleUserData = () => {
-    console.log("dados do usuário");
+  const hookAutores = () => {
+    console.log("id do autor", id);
+    navigate(`/autores/${id}`);
+    
   };
 
   return (
@@ -31,16 +30,16 @@ const Autor : React.FC<AutorProps> = () => {
         height: 300,
         mx: "auto",
       }}
-      onClick={handleUserData}
+      onClick={hookAutores}
     >
       <Avatar
-        alt={autor?.nome || "Usuário"}
-        src={autor?.image || ""}
+        alt={nome || "Usuário"}
+        src={image || ""}
         sx={{ width: 200, height: 200 }}
       />
       <Typography className="text-[#623333] text-center mt-4">
         <p className="font-[bitter] font-bold text-lg">
-          {autor?.nome || "NOME"}
+          {nome} 
         </p>
       </Typography>
     </Box>
