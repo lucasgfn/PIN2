@@ -23,12 +23,11 @@ const Book : React.FC<CardProps> = ({id, image, title, price}) => {
         <Box
             sx={{
                 padding: 2,
-                background: "red",
                 width: 250, height: 350
             }}
             onClick={hookBook}
             >
-            <img src={image} alt={image} style={{ borderRadius: "10px", background: "blue", width: "100%", height: "250px" }} />
+            <img src={image} alt={image} style={{ objectFit: "cover", borderRadius: "10px" ,width: "80%", height: "250px" }} />
             <Typography variant="h6" sx={{ 
                 mt: 1,
                 color: "#623333",

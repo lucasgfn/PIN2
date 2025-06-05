@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 interface AutorProps {
   id? : number;
-  nome: string;
+  nomeAutor: string;
   image: string;
 }
 
-const Autor : React.FC<AutorProps> = ({id, nome, image}) => {
+const Autor : React.FC<AutorProps> = ({id, nomeAutor, image}) => {
   const navigate = useNavigate();
 
   const hookAutores = () => {
@@ -33,13 +33,13 @@ const Autor : React.FC<AutorProps> = ({id, nome, image}) => {
       onClick={hookAutores}
     >
       <Avatar
-        alt={nome || "Usuário"}
+        alt={nomeAutor || "Usuário"}
         src={image || ""}
         sx={{ width: 200, height: 200 }}
       />
       <Typography className="text-[#623333] text-center mt-4">
         <p className="font-[bitter] font-bold text-lg">
-          {nome} 
+          {nomeAutor} 
         </p>
       </Typography>
     </Box>

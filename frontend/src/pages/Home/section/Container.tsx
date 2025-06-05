@@ -31,7 +31,7 @@ export function Container() {
   
   if (isBookLoading || isAutoresLoading) {
     return (
-      <Box sx={{ width: "90%", margin: "0 auto", backgroundColor: "gray", padding: 10 }}>
+      <Box sx={{ width: "80%", margin: "10%", backgroundColor: "gray", padding: 10 }}>
         <Typography variant="body1" color="white">
           Carregando dados...
         </Typography>
@@ -41,7 +41,7 @@ export function Container() {
 
   if (isBookError || isAutoresError) {
     return (
-      <Box sx={{ width: "90%", margin: "0 auto", backgroundColor: "gray", padding: 10 }}>
+      <Box sx={{ width: "80%", margin: "10%", backgroundColor: "gray", padding: 10 }}>
         <Typography variant="body1" color="white">
           Erro ao carregar!
         </Typography>
@@ -55,40 +55,40 @@ export function Container() {
   return (
     <Box
       sx={{
-        width: "90%",
-        margin: "0 auto",
-        backgroundColor: "gray",
-        padding: 2,
-      }}
+        width: "80%",
+        margin: "10%",
+        paddingBottom: 10,
+        border: '1px solid #623333',  
+        borderRadius: '20px',  
+        }}
     >
         
-    <img src={propaganda} alt="propaganda" className="w-full" />
+    <img src={propaganda} alt="propaganda" className="w-full rounded-2xl" />
 
     {/* PARTE DO AUTORES  */}
-      <Typography variant="h5" sx={{ mt: 2, color: "white" }}>
+      <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
         Principais Autores
       </Typography>
       <Box display="flex" flexWrap="wrap" gap={2} mt={1}>
 
         {top4Autor.map((autor: IAutorData) => (
-          <Box key={autor.id} flexBasis={{ xs: "100%", sm: "50%", md: "25%" }}>
-           <Autor id={autor.id} nome={autor.nome} image={autor.img} /> 
+          <Box key={autor.id} flexBasis={{ xs: "100%", sm: "50%", md: "23%" }}>
+           <Autor id={autor.id} nomeAutor={autor.nome} image={autor.img} /> 
            </Box>
         ))}
       </Box>
 
     {/* PARTE DO LIVROS  */}
-      <Typography variant="h5" sx={{ mt: 4, color: "white" }}>
-        Livros
+      <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
+        Mais Vendidos
       </Typography>
 
-      <Box display="flex" flexWrap="wrap" gap={2} mt={1}
-      sx={{backgroundColor: "black"}}>
+      <Box display="flex" justifyContent="space-around" padding="10px" flexWrap="wrap" gap={2} mt={1}>
 
         {top4Book.map((book: IBookData) => (
 
-          <Box key={book.id} flexBasis={{ xs: "100%", sm: "50%", md: "25%" }}>
-            <Book id={book.id} image={book.img} title={book.nomeAutor} price={book.precoUnit} />
+          <Box key={book.id} flexBasis={{ xs: "100%", md: "2%"}}>
+            <Book id={book.id} image={book.img} title={book.nomeLivro} price={book.precoUnit} />
           </Box>
 
         ))}
