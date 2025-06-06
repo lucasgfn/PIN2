@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useAutorById } from "../../hook/useAutorData";
+import { useAutorById } from "../../../hook/useAutorData";
 
 const AutorProfile : React.FC = () => {
 

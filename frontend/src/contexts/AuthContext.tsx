@@ -1,9 +1,13 @@
 // context/AuthContext.tsx
 import { createContext, useContext, useState } from 'react';
+import axios from "axios";
+
+import type { IUserData } from '../interface/IUserData';
 
 interface AuthContextType {
   isLogged: boolean;
-  login: () => void;
+  userData: IUserData | null; 
+  login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -11,12 +15,37 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [userData, setUserData] = useState<IUserData | null>(null);
 
-  const login = () => setIsLogged(true);
-  const logout = () => setIsLogged(false);
+  const login = async (username: string, password: string): Promise<boolean> => {
+    try {
+      await axios.post<IUserData>('http://localhost:8080/auth/login', { username, password });
+      //setUserData(response.data as IUserData);
+      setIsLogged(true);
+
+      const userResponse = await axios.get(`http://localhost:8080/compradores/${username}`);
+      setUserData(userResponse.data as IUserData);
+     
+
+      console.log("LOGADO");
+      return true;
+    } catch (error) {
+      setIsLogged(false);
+      setUserData(null);
+
+      //console.log("ERRO", username, password);
+      return false;
+    }
+  };
+
+  const logout = () => {
+    setIsLogged(false);
+    setUserData(null); 
+  
+  };
 
   return (
-    <AuthContext.Provider value={{ isLogged, login, logout }}>
+    <AuthContext.Provider value={{ isLogged, login, logout, userData}}>
       {children}
     </AuthContext.Provider>
   );

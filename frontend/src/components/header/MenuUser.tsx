@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../contexts/AuthContext';
 
 
-const UserMenu: React.FC = () => {
+const UserMenu: React.FC = ({}) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const { isLogged, login, logout } = useAuth();
+    const {isLogged, userData} = useAuth();
 
+    console.log("autenticado", isLogged)
+    
+    console.log("img", userData)
     //const isLogged : boolean = true;  //MUDAR --> ADD LOGICA DE ENTRADA
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -37,7 +40,6 @@ const UserMenu: React.FC = () => {
             break;
         case 'Sair': 
             navigate('/home');
-            logout();
             //ADICIONAR LOGICA DE SAIDA 
             break;
         case 'Login':
@@ -53,11 +55,12 @@ const UserMenu: React.FC = () => {
         <>
         <Avatar
             alt="User"
-            src="https://i.pravatar.cc/40" // MUDAR CAMINHO
+            src={userData?.img} // MUDAR CAMINHO
             sx={{ width: 50, height: 50, cursor: "pointer" }}
             onClick={handleMenuOpen}
         />
         <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+           
             {isLogged ? (
                 <>
                     <MenuItem onClick={() => handleOptionClick('Carrinho')}>Carrinho</MenuItem>
