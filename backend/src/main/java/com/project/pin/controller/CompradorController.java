@@ -40,4 +40,9 @@ public class CompradorController {
         CompradorResponseDTO dto = compradorService.getInfosComprador(id);
         return ResponseEntity.ok(dto);
     }
+
+    @GetMapping("/{username}")
+    public Comprador getUsuarioByUsername(@PathVariable String username) {
+        return compradorService.buscarPorUsername(username);
+    }
 }
