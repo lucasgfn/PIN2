@@ -30,7 +30,7 @@ public class Comprador extends Usuario{
     private String cep;
     @Column(name = "estado")
     private String estado;
-    @Column(name = "img")
+    @Column(name = "img", columnDefinition = "TEXT")
     private String img;
     @Column(name = "nivel")
     private int nivel = 1;
