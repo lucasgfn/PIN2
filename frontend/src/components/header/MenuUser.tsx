@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 //AUTH
 import { useAuth } from '../../contexts/AuthContext';
 
+import gifCat from "../../assets/cat/catGif.gif";
+
 
 const UserMenu: React.FC = ({}) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const {isLogged, userData} = useAuth();
+    const {isLogged, logout, userData} = useAuth();
 
-    console.log("autenticado", isLogged)
-    
-    console.log("img", userData)
+
     //const isLogged : boolean = true;  //MUDAR --> ADD LOGICA DE ENTRADA
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,8 +39,8 @@ const UserMenu: React.FC = ({}) => {
             navigate('/editar-dados');
             break;
         case 'Sair': 
+            logout();
             navigate('/home');
-            //ADICIONAR LOGICA DE SAIDA 
             break;
         case 'Login':
             navigate("/login");
@@ -55,7 +55,7 @@ const UserMenu: React.FC = ({}) => {
         <>
         <Avatar
             alt="User"
-            src={userData?.img} // MUDAR CAMINHO
+            src={userData?.img || gifCat} // MUDAR CAMINHO
             sx={{ width: 50, height: 50, cursor: "pointer" }}
             onClick={handleMenuOpen}
         />

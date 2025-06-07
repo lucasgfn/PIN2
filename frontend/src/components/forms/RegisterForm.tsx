@@ -2,11 +2,13 @@ import { Box, Button, Container, Paper } from "@mui/material";
 import { useState } from "react";
 import CustomTextField from "./Fields/CustomTextField";
 import ImageUpload from "./Fields/ImageUpload";
-import logo from "../../assets/logo_short.jpg";
+import logo from "../../assets/logo/logo_short.jpg";
+import { useSendData } from "../../hook/useUserData";
+import type { IUserData } from "../../interface/IUserData";
 
 const RegisterForm: React.FC = () => {
   const [username, setUsername] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPasssword] = useState("");
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
   const [bairro, setBairro] = useState("");
@@ -18,26 +20,46 @@ const RegisterForm: React.FC = () => {
   const [cpf, setCpf] = useState("");
   const [imagem, setImagem] = useState<File | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const mutation = useSendData();
+  const [error, setError] = useState<string | null>(null);
+
+  const fileToBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+    });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("senha", senha);
-    formData.append("nome", nome);
-    formData.append("endereco", endereco);
-    formData.append("bairro", bairro);
-    formData.append("cep", cep);
-    formData.append("cidade", cidade);
-    formData.append("estado", estado);
-    formData.append("telefone", telefone);
-    formData.append("email", email);
-    formData.append("cpf", cpf);
+    let imagemBase64: string | undefined;
     if (imagem) {
-      formData.append("imagem", imagem);
+      imagemBase64 = await fileToBase64(imagem);
     }
 
-    console.log("Formulário enviado com imagem:", imagem);
+    const newUser: IUserData = {
+      tipo_usuario: "comprador", 
+      cpf,
+      email,
+      password,
+      nome,
+      username,
+      tipo_admin: false, 
+      bairro,
+      cep,
+      cidade,
+      estado,
+      img: imagemBase64,
+      nivel: 1, 
+      desconto: false, 
+      rua: endereco,
+      telefone
+    };
+
+    mutation.mutate(newUser);
+    console.log("Senha passada:", password);
   };
 
   return (
@@ -77,8 +99,8 @@ const RegisterForm: React.FC = () => {
             <CustomTextField
               label="Senha"
               type="password"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
+              value={password}
+              onChange={(e) => setPasssword(e.target.value)}
             />
             <CustomTextField
               label="Nome"
@@ -94,7 +116,7 @@ const RegisterForm: React.FC = () => {
                 const val = e.target.value;
                 if (/^\d{0,11}$/.test(val)) setCpf(val);
               }}
-              inputProps={{ maxLength: 11 }}
+              sx={{ maxLength: 11 }}
             />
             <CustomTextField
               label="Endereço"
@@ -122,7 +144,7 @@ const RegisterForm: React.FC = () => {
                 const val = e.target.value;
                 if (/^\d{0,8}$/.test(val)) setCEP(val);
               }}
-              inputProps={{ maxLength: 8 }}
+              sx={{ maxLength: 8 }}
             />
             <CustomTextField
               label="Estado"
@@ -138,7 +160,7 @@ const RegisterForm: React.FC = () => {
                 const val = e.target.value;
                 if (/^\d{0,11}$/.test(val)) setTelefone(val);
               }}
-              inputProps={{ maxLength: 11 }}
+              sx={{ maxLength: 11 }}
             />
             <CustomTextField
               label="Email"
@@ -149,28 +171,29 @@ const RegisterForm: React.FC = () => {
             <Box mt={3}>
               <ImageUpload onImageSelect={(file) => setImagem(file)} />
             </Box>
+            <Box display="flex" justifyContent="center" mt={4}>
+              <Button
+                variant="outlined"
+                type="submit"
+                sx={{
+                  fontSize: "1.1rem",
+                  px: 7,
+                  borderRadius: 3,
+                  borderColor: "#335D62",
+                  color: "#335D62",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    borderColor: "#335D62",
+                  },
+                }}
+              >
+                Salvar
+              </Button>
+          </Box>
           </Box>
         </Paper>
       </Container>
-      <Box display="flex" justifyContent="center" mt={4}>
-        <Button
-          variant="outlined"
-          type="submit"
-          sx={{
-            fontSize: "1.1rem",
-            px: 7,
-            borderRadius: 3,
-            borderColor: "#335D62",
-            color: "#335D62",
-            "&:hover": {
-              backgroundColor: "transparent",
-              borderColor: "#335D62",
-            },
-          }}
-        >
-          Salvar
-        </Button>
-      </Box>
+     
     </Box>
   );
 };

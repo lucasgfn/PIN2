@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, InputBase, Toolbar, styled } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo_short.jpg"
+import logo from "../../assets/logo/logo_short.jpg"
 import MenuUser from "../header/MenuUser.tsx";
 
 const Search = styled('div')(() => ({

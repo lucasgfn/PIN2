@@ -12,6 +12,8 @@ import { useAutorData } from "../../../hook/useAutorData";
 import type { IAutorData } from "../../../interface/IAutorData";
 
 import propaganda from "../../../assets/propaganda.png";
+import cryingCar from "../../../assets/cat/crying-cat.gif";
+import catLoading from "../../../assets/cat/cat-loading.gif";
 
 
 //Adionado como container em PAGES diretamente porque não será reutilizado 
@@ -31,24 +33,24 @@ export function Container() {
   
   if (isBookLoading || isAutoresLoading) {
     return (
-      <Box sx={{ width: "80%", margin: "10%", backgroundColor: "gray", padding: 10 }}>
-        <Typography variant="body1" color="white">
+      <Box sx={{ width: "80%", margin: "10%",  display: "flex", flexDirection: "column", alignItems:"center", justifyContent: "center" }}>
+        <Typography variant="body1" color="#7c4a4a">
+          <img src={catLoading} style={{width: "150px", marginBottom: "16px" }}/>
           Carregando dados...
         </Typography>
       </Box>
     );
-  }
-
-  if (isBookError || isAutoresError) {
+  }else if(isAutoresError || isBookError){
     return (
-      <Box sx={{ width: "80%", margin: "10%", backgroundColor: "gray", padding: 10 }}>
-        <Typography variant="body1" color="white">
-          Erro ao carregar!
+      <Box sx={{ width: "80%", margin: "10%", display: "flex", flexDirection: "column", alignItems:"center", justifyContent: "center" }}>
+        <Typography variant="body1" color="#7c4a4a">
+        <img src={cryingCar} style={{ width: "150px", marginBottom: "16px"}}/>
+          Dados Indisponíveis!
         </Typography>
       </Box>
     );
   }
-
+//
   const top4Book = dataBook?.slice(0, 4) ?? [];
   const top4Autor = dataAutor?.slice(0, 4) ?? [];
 

@@ -2,7 +2,7 @@ import { Box, Button, Container, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import logo from "../../assets/logoSemFundo.png";
+import logo from "../../assets/logo/logoSemFundo.png";
 import { useAuth } from "../../contexts/AuthContext";
 
 
