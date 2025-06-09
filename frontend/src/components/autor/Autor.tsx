@@ -1,21 +1,20 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 
 interface AutorProps {
   id? : number;
-  nomeAutor: string;
-  image: string;
+  nomeAutor?: string;
+  image?: string;
+  onClick?: (id?: number) => void; 
 }
 
-const Autor : React.FC<AutorProps> = ({id, nomeAutor, image}) => {
-  const navigate = useNavigate();
+const Autor : React.FC<AutorProps> = ({id, nomeAutor, image, onClick}) => {
 
-  const hookAutores = () => {
-    console.log("id do autor", id);
-    navigate(`/autores/${id}`);
-    
-  };
+  const handleClick = () => {
+    if (onClick) {
+      onClick(id);
+    }
+  }
 
   return (
     <Box
@@ -30,7 +29,7 @@ const Autor : React.FC<AutorProps> = ({id, nomeAutor, image}) => {
         height: 300,
         mx: "auto",
       }}
-      onClick={hookAutores}
+      onClick={handleClick}
     >
       <Avatar
         alt={nomeAutor || "Usuário"}
@@ -38,7 +37,7 @@ const Autor : React.FC<AutorProps> = ({id, nomeAutor, image}) => {
         sx={{ width: 200, height: 200 }}
       />
       <Typography className="text-[#623333] text-center mt-4">
-        <p className="font-[bitter] font-bold text-lg">
+        <p className="font-[bitter] font-bold text-lg mt-2.5">
           {nomeAutor} 
         </p>
       </Typography>

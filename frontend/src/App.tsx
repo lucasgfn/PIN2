@@ -4,12 +4,14 @@ import 'swiper/swiper-bundle.css';
 import "swiper/css";
 
 
+
 const App: React.FC = () => {
 
 
   return (
     <>
-      <Home/>
+        <Home/>
+  
     </>
   )
 }

@@ -1,5 +1,5 @@
 import {  Paper, Box} from "@mui/material";
-import Autor from "../cards/Autor";
+
 
 const PerfilComprador: React.FC = () => {
   return (
@@ -16,7 +16,8 @@ const PerfilComprador: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Autor nome={""} image={""}/>
+        <h1>Preisa criar um para aparecer o usuario</h1>
+        <h1>Pergunta: Isso é um componente não um pagina, sem rotas para isso</h1>
       </Paper>
     </Box>
   );

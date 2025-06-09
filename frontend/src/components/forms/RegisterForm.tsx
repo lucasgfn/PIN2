@@ -5,6 +5,7 @@ import ImageUpload from "./Fields/ImageUpload";
 import logo from "../../assets/logo/logo_short.jpg";
 import { useSendData } from "../../hook/useUserData";
 import type { IUserData } from "../../interface/IUserData";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -21,8 +22,10 @@ const RegisterForm: React.FC = () => {
   const [imagem, setImagem] = useState<File | null>(null);
 
   const mutation = useSendData();
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
+  //Para converter img
   const fileToBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -34,32 +37,39 @@ const RegisterForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let imagemBase64: string | undefined;
-    if (imagem) {
-      imagemBase64 = await fileToBase64(imagem);
+    try{
+      let imagemBase64: string | undefined;
+      if (imagem) {
+        imagemBase64 = await fileToBase64(imagem);
+      }
+  
+      const newUser: IUserData = {
+        tipo_usuario: "comprador", 
+        cpf,
+        email,
+        password,
+        nome,
+        username,
+        tipo_admin: false, 
+        bairro,
+        cep,
+        cidade,
+        estado,
+        img: imagemBase64,
+        nivel: 1, 
+        desconto: false, 
+        rua: endereco,
+        telefone
+      };
+  
+      
+      mutation.mutate(newUser);
+      navigate("/login");
+    }catch{
+      setError("Erro ao cadastrar Usuario");
     }
-
-    const newUser: IUserData = {
-      tipo_usuario: "comprador", 
-      cpf,
-      email,
-      password,
-      nome,
-      username,
-      tipo_admin: false, 
-      bairro,
-      cep,
-      cidade,
-      estado,
-      img: imagemBase64,
-      nivel: 1, 
-      desconto: false, 
-      rua: endereco,
-      telefone
-    };
-
-    mutation.mutate(newUser);
-    console.log("Senha passada:", password);
+    
+   
   };
 
   return (

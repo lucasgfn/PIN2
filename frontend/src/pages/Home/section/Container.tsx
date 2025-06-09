@@ -4,20 +4,23 @@ import Typography from "@mui/material/Typography";
 //Book
 import { useBookData } from "../../../hook/useBookData";
 import type { IBookData } from "../../../interface/IBookData";
-import Book from "../../../components/cards/Book";
+import Book from "../../../components/book/Book";
 
 //Autor
-import Autor from "../../../components/cards/Autor";
+import Autor from "../../../components/autor/Autor";
 import { useAutorData } from "../../../hook/useAutorData";
 import type { IAutorData } from "../../../interface/IAutorData";
 
 import propaganda from "../../../assets/propaganda.png";
 import cryingCar from "../../../assets/cat/crying-cat.gif";
 import catLoading from "../../../assets/cat/cat-loading.gif";
+import { useNavigate } from "react-router-dom";
 
 
 //Adionado como container em PAGES diretamente porque não será reutilizado 
 export function Container() {
+  const navigate = useNavigate();
+  
   const { 
     data: dataBook,
     isLoading: isBookLoading, 
@@ -29,7 +32,13 @@ export function Container() {
     isLoading: isAutoresLoading,
     isError: isAutoresError,
   } = useAutorData();
-
+  
+  const handleAutorClick = (id?: number) => {
+    if (id !== undefined) {
+      console.log("id do autor", id);
+      navigate(`/autores/${id}`);
+    }
+  };
   
   if (isBookLoading || isAutoresLoading) {
     return (
@@ -75,9 +84,14 @@ export function Container() {
 
         {top4Autor.map((autor: IAutorData) => (
           <Box key={autor.id} flexBasis={{ xs: "100%", sm: "50%", md: "23%" }}>
-           <Autor id={autor.id} nomeAutor={autor.nome} image={autor.img} /> 
-           </Box>
-        ))}
+            <Autor
+              id={autor.id}
+              nomeAutor={autor.nome}
+              image={autor.img}
+              onClick={handleAutorClick}
+            />
+             </Box>
+            ))}   
       </Box>
 
     {/* PARTE DO LIVROS  */}
