@@ -7,6 +7,7 @@ import Goals from "../components/goals/Goals";
 import BookDetails from "../pages/MainPage/BookDetails/BookDetails";
 import AutorProfile from "../pages/MainPage/Autor/AutorProfile";
 import MainPage from "../pages/MainPage/MainPage";
+import PerfilDetails from "../pages/MainPage/Perfil/PerfilDetails";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/autores/:id",
     element: <AutorProfile/>,
+  },
+  {
+    path: "/perfil",
+    element: <PerfilDetails/>,
   },
 
 ]);

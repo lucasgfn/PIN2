@@ -16,4 +16,5 @@ export interface IUserData {
         desconto: boolean,
         rua: string,
         telefone: string
+        lista : string[]
 }

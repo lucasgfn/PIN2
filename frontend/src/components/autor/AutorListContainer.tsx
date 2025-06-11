@@ -17,7 +17,7 @@ const AutorListContainer: React.FC<{ dataAutor: IAutorData[] }> = ({ dataAutor }
 
     return (
       <>      
-                     <Box display="flex" flexWrap="wrap" gap={2} mt={1}>
+             <Box display="flex" flexWrap="wrap" gap={2} mt={1}>
 
                      {dataAutor.map((autor: IAutorData) => (
                         <Box key={autor.id} flexBasis={{ xs: "100%", sm: "50%", md: "23%" }}>

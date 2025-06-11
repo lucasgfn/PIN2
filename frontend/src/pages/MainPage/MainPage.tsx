@@ -22,12 +22,10 @@ const MainPage : React.FC = () => {
        data: dataAutor,
    } = useAutorData();
 
-    
-
  
-  
    const books = (dataBook ?? []);
    const autor = (dataAutor ?? []);
+
 
 
     return (
