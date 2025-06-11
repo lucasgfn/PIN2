@@ -15,11 +15,12 @@ import propaganda from "../../../assets/propaganda.png";
 import cryingCar from "../../../assets/cat/crying-cat.gif";
 import catLoading from "../../../assets/cat/cat-loading.gif";
 import { useNavigate } from "react-router-dom";
+import AutorListContainer from "../../../components/autor/AutorListContainer";
+import BookListContainer from "../../../components/book/BookListCotainer";
 
 
 //Adionado como container em PAGES diretamente porque não será reutilizado 
 export function Container() {
-  const navigate = useNavigate();
   
   const { 
     data: dataBook,
@@ -33,12 +34,7 @@ export function Container() {
     isError: isAutoresError,
   } = useAutorData();
   
-  const handleAutorClick = (id?: number) => {
-    if (id !== undefined) {
-      console.log("id do autor", id);
-      navigate(`/autores/${id}`);
-    }
-  };
+
   
   if (isBookLoading || isAutoresLoading) {
     return (
@@ -76,39 +72,17 @@ export function Container() {
         
     <img src={propaganda} alt="propaganda" className="w-full rounded-2xl" />
 
-    {/* PARTE DO AUTORES  */}
-      <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
-        Principais Autores
-      </Typography>
-      <Box display="flex" flexWrap="wrap" gap={2} mt={1}>
+    <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
+                Principais Autores
+    </Typography>
 
-        {top4Autor.map((autor: IAutorData) => (
-          <Box key={autor.id} flexBasis={{ xs: "100%", sm: "50%", md: "23%" }}>
-            <Autor
-              id={autor.id}
-              nomeAutor={autor.nome}
-              image={autor.img}
-              onClick={handleAutorClick}
-            />
-             </Box>
-            ))}   
-      </Box>
+    <AutorListContainer dataAutor={top4Autor} />
 
-    {/* PARTE DO LIVROS  */}
-      <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
-        Mais Vendidos
-      </Typography>
-
-      <Box display="flex" justifyContent="space-around" padding="10px" flexWrap="wrap" gap={2} mt={1}>
-
-        {top4Book.map((book: IBookData) => (
-
-          <Box key={book.id} flexBasis={{ xs: "100%", md: "2%"}}>
-            <Book id={book.id} image={book.img} title={book.nomeLivro} price={book.precoUnit} />
-          </Box>
-
-        ))}
-      </Box>
+    <Typography variant="h5" sx={{ mt: 5, ml: 7,  color: "623333", fontWeight: "bold", fontFamily: "bitter", fontSize: "30px"}}>
+                Mais vendidos
+    </Typography>
+    <BookListContainer dataBook={top4Book}/>
+    
     </Box>
   );
 }

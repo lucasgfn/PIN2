@@ -4,12 +4,16 @@ import { useParams } from "react-router-dom";
 import { useAutorById } from "../../hook/useAutorData";
 import Autor from "./Autor";
 
-const AutorInfo = () => {
+interface AutorInfoProps {
+    idAutor?: number; 
+}
 
-    const { id } = useParams<{ id: string }>();
-    const { data: autor} = useAutorById(Number(id));
+const AutorInfo : React.FC<AutorInfoProps>  = ({idAutor}) => {
+    const params = useParams<{ id: string }>();
 
-    
+    const autorId = idAutor ?? Number(params.id);
+    const { data: autor } = useAutorById(autorId);
+        
 
     return (
         <>

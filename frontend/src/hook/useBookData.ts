@@ -18,6 +18,13 @@ const sendData = async (booktData: IBookData): Promise<IBookData> => {
     return response.data;
 }
 
+
+const fetchBookById = async (idLivro: number): Promise<IBookData> => {
+    const response = await axios.get<IBookData>(`${API_URL}/livros/${idLivro}`);
+    return response.data;
+  };
+
+
 // Hook GET
 export function useBookData() {
     return useQuery({
@@ -26,6 +33,15 @@ export function useBookData() {
         retry: 2
     });
 }
+
+// GET BY ID
+export function useBookById(id: number) {
+    return useQuery({
+      queryKey: ["book-data", id],
+      queryFn: () => fetchBookById(id),
+      enabled: !!id, 
+    });
+  }
 
 // Hook POST
 export function useSendData(): UseMutationResult<IBookData, Error, IBookData> {

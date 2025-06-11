@@ -34,8 +34,8 @@ const router = createBrowserRouter([
     element: <Goals/>,
   },
   {
-    path: "/livro/:id",
-    element: <BookDetails/>,
+    path: "/livro/:idLivro",
+    element: <BookDetails />,
   },
   {
     path: "/autores/:id",

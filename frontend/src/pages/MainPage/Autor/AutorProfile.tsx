@@ -41,7 +41,7 @@ const AutorProfile : React.FC = () => {
     <>
       <Header/>
         <Box sx={{margin: "0% 0% 10%"}}>
-          <AutorInfo />
+          <AutorInfo idAutor={autor?.id}/>
           <BooksContainer idAutor={autor?.id} />
         </Box> 
  

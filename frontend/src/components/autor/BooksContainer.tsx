@@ -31,10 +31,11 @@ const BooksContainer : React.FC<BooksContainerProps> = ({idAutor}) => {
             }}>
 
             {books.map((book: IBookData) => (
-            <Box key={book.idAutor} flexBasis={{ xs: "100%", sm: "48%", md: "23%" }}>
-                <Book image={book.img} title={book.nomeLivro} price={book.precoUnit} /> 
+            <Box key={book.id} flexBasis={{ xs: "100%", sm: "48%", md: "23%" }}>
+                <Book idLivro={book.id} image={book.img} title={book.nomeLivro} price={book.precoUnit} /> 
             </Box>
             ))}
+
         </Box>
         </>
     )
