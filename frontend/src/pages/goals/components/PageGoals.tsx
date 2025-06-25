@@ -1,6 +1,17 @@
 import { Typography, TextField, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const PageGoals: React.FC = () => {
+  const [quantidadePaginas, setQuantidadePaginas] = useState<number | "">("");
+  
+  //fazer o useEffect
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const valor = event.target.value;
+    setQuantidadePaginas(valor === "" ? "" : Number(valor));
+  };
+
   return (
     <>
       <Typography className="align-center text-[#1F1F25]">
@@ -18,10 +29,12 @@ const PageGoals: React.FC = () => {
         }}
       >
         <TextField
+          type="number"
+          value={quantidadePaginas}
+          onChange={handleChange}
           sx={{
-            marginTop:2,
-            width: 50,
-            height: 10,
+            marginTop: 2,
+            width: 100,
             "& .MuiOutlinedInput-root": {
               borderRadius: 20,
               "& fieldset": {

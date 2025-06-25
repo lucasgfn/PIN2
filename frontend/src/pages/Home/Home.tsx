@@ -19,11 +19,28 @@ import { Container } from "./section/Container";
 export function Home(){
 
     const [imgCarousel] = useState([
-        {id: 1, image: "https://imageio.forbes.com/specials-images/imageserve/66cc9d9ffc537cb99b7a3440/0x0.jpg?format=jpg&crop=1884,1256,x0,y0,safe&height=900&width=1600&fit=bounds"},
-        {id: 2, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUmz2Jq6irNx1qhilTNPaVOi7kVRl-49xVQ&s"},
-        {id: 3, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-MSHDeRRp2m86wMKYkqx88spBZvID-b4g2A&s"},
-    ])
-
+      {
+        id: 1,
+        image:
+          "https://imageio.forbes.com/specials-images/imageserve/66cc9d9ffc537cb99b7a3440/0x0.jpg?format=jpg&crop=1884,1256,x0,y0,safe&height=900&width=1600&fit=bounds",
+      },
+      {
+        id: 2,
+        image:
+          "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1600&q=80",
+      },
+      {
+        id: 4,
+        image:
+          "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=80",
+      },
+      {
+        id: 5,
+        image:
+          "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1600&q=80",
+      },
+    ]);
+    
 
     return (
         <>

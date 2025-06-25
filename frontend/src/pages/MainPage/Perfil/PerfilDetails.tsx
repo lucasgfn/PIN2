@@ -13,8 +13,6 @@ const PerfilDetails: React.FC = () => {
     
     </>
     
-      
-    
   );
 };
 

@@ -1,9 +1,9 @@
-import Header from "../header/Header";
+import Header from "../../components/header/Header";
 import { Box, Button, Container, Paper} from "@mui/material";
 import ReadGoals from "./components/ReadGoals";
 import PageGoals from "./components/PageGoals";
 import MonthGoals from "./components/MonthGoals";
-import PerfilComprador from "../comprador/PerfilComprador";
+import PerfilComprador from "../../components/comprador/PerfilComprador";
 
 const Goals: React.FC = () => {
   return (
@@ -16,11 +16,17 @@ const Goals: React.FC = () => {
             flexDirection: "row",
             justifyContent: "center",
             gap: 4,
+            width: "100%",
           }}
         >
-          <Box sx={{ width: 100 }}>
+          <Box sx={{ width: "25%", overflow: "auto" }}>
             <PerfilComprador />
           </Box>
+          <Box
+    sx={{
+      width: "70%", // resto da tela para o conteúdo
+    }}
+  >
           <Container maxWidth="lg">
             <Paper
               elevation={3}
@@ -86,6 +92,7 @@ const Goals: React.FC = () => {
               </Paper>
             </Paper>
           </Container>
+          </Box>
         </Box>
         <Box display="flex" justifyContent="center" mt={6}>
           <Button
