@@ -24,15 +24,15 @@ const MainPage: React.FC = () => {
       <Header />
       <Box
         sx={{
-          width: "20%", // menor largura
-          marginTop: "10%",
+          width: "20%", 
+          marginTop: "5%",
           marginLeft: "10%",
           marginBottom: 0,
           marginRight: 0,
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start", // só por clareza: "left" não é valor válido aqui
-          alignItems: "flex-start", // garante que o conteúdo fique à esquerda
+          alignItems: "flex-start", 
         }}
       >
         <GoToMetas />
@@ -41,7 +41,7 @@ const MainPage: React.FC = () => {
       <Box
         sx={{
           width: "80%",
-          margin: "5% 10%",
+          margin: "3% 10%",
           padding: "5%",
           border: "1px solid #623333",
           borderRadius: "20px",
@@ -69,12 +69,12 @@ const MainPage: React.FC = () => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Começe sua jornada na Trilha do Leitor{" "}
+            Gerencia suas metas de leitura{" "}
             <img
               src={book_gif}
               alt="book gif"
               style={{
-                margin: "-6% 85%",
+                margin: "-6% 75%",
                 width: "160px",
                 transform: "rotate(-20deg)",
               }}

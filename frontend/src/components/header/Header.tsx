@@ -42,40 +42,72 @@ const Header: React.FC = () => {
     };
 
 
-    return(
-        <>
-            <AppBar position="relative" sx={{ backgroundColor: '#f5f5f5', padding: '20px'}}>
-                <Toolbar className="flex justify-between">
+    const goToMain = () => {
+      navigate("/main");
+    };
 
-                    <Box sx={{display: 'flex', alignItems: 'center', gap: 20}}> 
-                        <Box>
-                            <img src={logo} alt={"logo"} style={{width: "200px", height: "auto"}}/>
-                        </Box>
-                        <Button onClick={goToHome} size="small" sx={{ fontWeight: "bold", color: "#623333", textTransform: "none" ,  fontSize:"18px"}}>
-                            Home
-                        </Button>
-                    </Box>
+    return (
+      <>
+        <AppBar
+          position="relative"
+          sx={{ backgroundColor: "#f5f5f5", padding: "20px" }}
+        >
+          <Toolbar className="flex justify-between">
+            <Box sx={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <Box>
+                <img
+                  src={logo}
+                  alt={"logo"}
+                  style={{ width: "200px", height: "auto" }}
+                />
+              </Box>
 
-                    <div className= "flex justify-center flex-1 p-px, ">
-                        <Search className="w-full">
-                            <SearchIconWrapper>
-                                 <SearchIcon />
-                            </SearchIconWrapper>
-                            <SearchInputBase 
-                                placeholder= "Buscar..."
-                                inputProps= {{ 'aria-label': 'search'}}
-                            />
-                        </Search>
-                    </div>
-                
-                    <div className="flex items-center">
-                         <MenuUser />
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Button
+                  onClick={goToHome}
+                  size="small"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#623333",
+                    textTransform: "none",
+                    fontSize: "18px",
+                  }}
+                >
+                  Home
+                </Button>
+                <Button
+                  onClick={goToMain}
+                  size="small"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#623333",
+                    textTransform: "none",
+                    fontSize: "18px",
+                  }}
+                >
+                  Main
+                </Button>
+              </Box>
+            </Box>
+            <div className="flex justify-center flex-1 p-px, ">
+              <Search className="w-full">
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <SearchInputBase
+                  placeholder="Buscar..."
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+            </div>
 
-    )
+            <div className="flex items-center">
+              <MenuUser />
+            </div>
+          </Toolbar>
+        </AppBar>
+      </>
+    );
 }
 
 export default Header

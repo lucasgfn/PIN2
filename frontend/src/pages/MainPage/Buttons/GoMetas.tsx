@@ -5,7 +5,7 @@ export default function GoToMetas() {
     <div className="p-4">
       <Link
         to="/metas"
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+        className="text-[#FF4081] font-semibold text-xl px-14 py-3 border-2 border-[#FF4081] rounded-[20px] transition duration-200 hover:bg-transparent hover:border-[#FF4081]"
       >
         Minhas Metas
       </Link>

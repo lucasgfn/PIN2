@@ -40,7 +40,7 @@ const ReadGoals: React.FC<ReadGoalsProps> = ({
         Metas de Páginas Diárias
       </Typography>
 
-      <Box>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         {diasDaSemana.map((dia) => (
           <CheckBox
             key={dia}
