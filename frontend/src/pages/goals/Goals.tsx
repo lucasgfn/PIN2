@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Container, Paper } from "@mui/material";
+import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import Header from "../../components/header/Header";
 import ReadGoals from "./ReadGoals";
 import PageGoals from "./PageGoals";
@@ -12,6 +12,7 @@ import {
 } from "../../hook/useGoalData";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
+import MonthGoals from "./MonthGoals";
 
 const Goals: React.FC = () => {
   const { userData, isLogged, logout } = useAuth();
@@ -132,6 +133,21 @@ const Goals: React.FC = () => {
                 </Box>
               </Paper>
             </Container>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 6,
+                mt: 8,
+                borderRadius: 10,
+                border: "2px solid",
+                borderColor: "#8A2BE2",
+                backgroundColor: "#F5F5F5",
+              }}
+            >
+              <Box sx={{ width: "70%" }}>
+                <MonthGoals />
+              </Box>
+            </Paper>
           </Box>
         </Box>
         <Box display="flex" justifyContent="center" mt={6}>

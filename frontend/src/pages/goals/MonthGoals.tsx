@@ -1,5 +1,5 @@
-import { Typography, TextField, Box, Button } from "@mui/material";
-import CheckBox from "./CheckBox";
+import { Typography, TextField, Box, Button, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 
 const MonthGoals: React.FC = () => {
@@ -8,9 +8,14 @@ const MonthGoals: React.FC = () => {
 
   const handleAddLabel = () => {
     if (labelText.trim()) {
-      setLabels([...labels, labelText.trim()]);
+      setLabels([labelText.trim(), ...labels]); 
       setLabelText("");
     }
+  };
+  
+
+  const handleDeleteLabel = (index: number) => {
+    setLabels(labels.filter((_, i) => i !== index));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -28,9 +33,10 @@ const MonthGoals: React.FC = () => {
         </p>
       </Typography>
 
-      <Box sx={{ marginTop: 5, display: "flex", flexDirection: "column", gap: 2 }}>
-
-        <Box sx={{ display: "flex", gap: 1 }}>
+      <Box
+        sx={{ marginTop: 5, display: "flex", flexDirection: "column", gap: 2 }}
+      >
+        <Box sx={{ display: "flex", gap: 2}}>
           <TextField
             value={labelText}
             onChange={(e) => setLabelText(e.target.value)}
@@ -49,13 +55,44 @@ const MonthGoals: React.FC = () => {
           <Button
             onClick={handleAddLabel}
             variant="outlined"
-            sx={{ borderRadius: 20, borderColor: "#8A2BE2",
-                px: 2,
-                color: "#8A2BE2",
+            sx={{
+              borderRadius: 20,
+              borderColor: "#8A2BE2",
+              px: 2,
+              color: "#8A2BE2",
             }}
           >
             Adicionar
           </Button>
+        </Box>
+
+        {/* Lista de metas adicionadas */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2}}>
+          {labels.map((label, index) => (
+            <Box
+              key={index}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                border: "1px solid #8A2BE2",
+                borderRadius: 20,
+                padding: "16px 32px",
+                width: "fit-content",
+                maxWidth: "100%",
+                wordBreak: "break-word",
+              }}
+            >
+              <Typography>{label}</Typography>
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={() => handleDeleteLabel(index)}
+              >
+                <DeleteIcon fontSize="small" sx={{ color: "#8A2BE2" }} />
+              </IconButton>
+            </Box>
+          ))}
         </Box>
       </Box>
     </>
