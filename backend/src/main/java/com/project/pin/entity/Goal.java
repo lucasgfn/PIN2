@@ -1,5 +1,7 @@
 package com.project.pin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.pin.entity.Comprador;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,5 +21,10 @@ public class Goal {
     @CollectionTable(name = "goal_dias_lidos", joinColumns = @JoinColumn(name = "goal_id"))
     @Column(name = "dia")
     private List<String> diasLidos = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comprador_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Comprador comprador;
 
 }

@@ -1,6 +1,5 @@
 import { Typography, Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import CheckBox from "./CheckBox";
 
 const diasDaSemana = [
@@ -12,15 +11,22 @@ const diasDaSemana = [
   "Sábado",
   "Domingo",
 ];
-const [diasSelecionados, setDiasSelecionados] = useState<string[]>([]);
 
-const ReadGoals: React.FC = () => {
-  //fazer useEffect
-  
+type ReadGoalsProps = {
+  diasSelecionados: string[];
+  setDiasSelecionados: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const ReadGoals: React.FC<ReadGoalsProps> = ({
+  diasSelecionados,
+  setDiasSelecionados,
+}) => {
   const toggleDia = (dia: string) => {
-    setDiasSelecionados((prev) =>
-      prev.includes(dia) ? prev.filter((d) => d !== dia) : [...prev, dia]
-    );
+    if (diasSelecionados.includes(dia)) {
+      setDiasSelecionados(diasSelecionados.filter((d) => d !== dia));
+    } else {
+      setDiasSelecionados([...diasSelecionados, dia]);
+    }
   };
 
   return (

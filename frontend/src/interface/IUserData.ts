@@ -1,6 +1,6 @@
 export interface IUserData {
         tipo_usuario: string,
-        id_usuario? : number,
+        id : number,
         cpf: string,
         email: string,
         password: string,

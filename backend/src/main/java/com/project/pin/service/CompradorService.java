@@ -85,12 +85,6 @@ public class CompradorService {
     }
 
 
-
-
-
-
-
-
     public CompradorResponseDTO getInfosComprador(Long id) {
         Comprador comprador = compradorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Comprador não encontrado"));

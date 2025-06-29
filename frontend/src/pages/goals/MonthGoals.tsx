@@ -29,9 +29,6 @@ const MonthGoals: React.FC = () => {
       </Typography>
 
       <Box sx={{ marginTop: 5, display: "flex", flexDirection: "column", gap: 2 }}>
-        {labels.map((label, index) => (
-         // <CheckBox key={index} label={label} />
-        ))}
 
         <Box sx={{ display: "flex", gap: 1 }}>
           <TextField

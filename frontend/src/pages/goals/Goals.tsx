@@ -1,11 +1,65 @@
+import React, { useState, useEffect } from "react";
+import { Box, Button, Container, Paper } from "@mui/material";
 import Header from "../../components/header/Header";
-import { Box, Button, Container, Paper} from "@mui/material";
-import ReadGoals from "./components/ReadGoals";
-import PageGoals from "./components/PageGoals";
-import MonthGoals from "./components/MonthGoals";
+import ReadGoals from "./ReadGoals";
+import PageGoals from "./PageGoals";
 import PerfilComprador from "../../components/comprador/PerfilComprador";
+import {
+  usePutDiasLidos,
+  usePostQuantidadePaginas,
+  useFetchGoal,
+  useFetchDiasLidos,
+} from "../../hook/useGoalData";
+import { useAuth } from "../../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const Goals: React.FC = () => {
+  const { userData, isLogged, logout } = useAuth();
+
+  // Redireciona se não logado ou sem dados do usuário
+  if (!isLogged || !userData) {
+    logout();
+    return <Navigate to="/login" />;
+  }
+
+  const compradorId = userData.id;
+
+  const { data: goalData } = useFetchGoal(compradorId);
+  const { data: diasLidosData } = useFetchDiasLidos(compradorId);
+
+  const [diasLidos, setDiasLidos] = useState<string[]>([]);
+  const [quantidadePaginas, setQuantidadePaginas] = useState<number | "">("");
+
+  useEffect(() => {
+    if (goalData?.quantidadePaginas !== undefined) {
+      setQuantidadePaginas(goalData.quantidadePaginas);
+    }
+  }, [goalData]);
+
+  useEffect(() => {
+    if (diasLidosData) {
+      setDiasLidos(diasLidosData);
+    }
+  }, [diasLidosData]);
+
+  const { mutate: salvarDiasLidos } = usePutDiasLidos();
+  const { mutate: salvarGoal } = usePostQuantidadePaginas(compradorId);
+
+  const handleSalvar = () => {
+    if (quantidadePaginas !== "") {
+      salvarGoal({
+        quantidadePaginas: Number(quantidadePaginas),
+        diasLidos,
+      });
+    }
+
+    if (goalData?.id) {
+      salvarDiasLidos({ id: goalData.id, dias: diasLidos });
+    } else {
+      alert("Meta ainda não carregada, aguarde...");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -22,82 +76,67 @@ const Goals: React.FC = () => {
           <Box sx={{ width: "25%", overflow: "auto" }}>
             <PerfilComprador />
           </Box>
-          <Box
-    sx={{
-      width: "70%", // resto da tela para o conteúdo
-    }}
-  >
-          <Container maxWidth="lg">
-            <Paper
-              elevation={3}
-              sx={{
-                p: 6,
-                mt: 8,
-                borderRadius: 10,
-                border: "2px solid",
-                borderColor: "#FF4081",
-                backgroundColor: "#F5F5F5",
-              }}
-            >
-              <Box
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  display: "flex",
-                  gap: 4,
-                  justifyContent: "left",
-                }}
-              >
-                <Paper
-                  elevation={3}
-                  sx={{
-                    p: 6,
-                    borderRadius: 10,
-                    border: "2px solid",
-                    borderColor: "#007BFF",
-                    backgroundColor: "#F5F5F5",
-                    flex: 1,
-                  }}
-                >
-                  <Box sx={{ display: "flex", gap: 4 }}>
-                    <Box sx={{ flex: 1 }}>
-                      <ReadGoals />
-                    </Box>
-                    <Box
-                      sx={{
-                        flex: 1,
-                        backgroundColor: "#F5F5F5",
-                        borderRadius: 2,
-                      }}
-                    >
-                      <PageGoals />
-                    </Box>
-                  </Box>
-                </Paper>
-              </Box>
-
+          <Box sx={{ width: "70%" }}>
+            <Container maxWidth="lg">
               <Paper
                 elevation={3}
                 sx={{
                   p: 6,
-                  mt: 6,
+                  mt: 8,
                   borderRadius: 10,
                   border: "2px solid",
-                  borderColor: "#8A2BE2",
+                  borderColor: "#FF4081",
                   backgroundColor: "#F5F5F5",
                 }}
               >
-                <Box>
-                  <MonthGoals />
+                <Box
+                  sx={{
+                    backgroundColor: "#F5F5F5",
+                    display: "flex",
+                    gap: 4,
+                    justifyContent: "left",
+                  }}
+                >
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      p: 6,
+                      borderRadius: 10,
+                      border: "2px solid",
+                      borderColor: "#007BFF",
+                      backgroundColor: "#F5F5F5",
+                      flex: 1,
+                    }}
+                  >
+                    <Box sx={{ display: "flex", gap: 4 }}>
+                      <Box sx={{ flex: 1 }}>
+                        <ReadGoals
+                          diasSelecionados={diasLidos}
+                          setDiasSelecionados={setDiasLidos}
+                        />
+                      </Box>
+                      <Box
+                        sx={{
+                          flex: 1,
+                          backgroundColor: "#F5F5F5",
+                          borderRadius: 2,
+                        }}
+                      >
+                        <PageGoals
+                          quantidadePaginas={quantidadePaginas}
+                          setQuantidadePaginas={setQuantidadePaginas}
+                        />
+                      </Box>
+                    </Box>
+                  </Paper>
                 </Box>
               </Paper>
-            </Paper>
-          </Container>
+            </Container>
           </Box>
         </Box>
         <Box display="flex" justifyContent="center" mt={6}>
           <Button
             variant="outlined"
-            type="submit"
             sx={{
               fontSize: "1.3rem",
               px: 7,
@@ -109,6 +148,7 @@ const Goals: React.FC = () => {
                 borderColor: "#335D62",
               },
             }}
+            onClick={handleSalvar}
           >
             Salvar
           </Button>
