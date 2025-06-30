@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-
 import type { IUserData } from "../interface/IUserData";
 
 interface AuthContextType {
@@ -15,10 +14,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // Inicializa estado lendo do localStorage (se existir)
+  // Inicializa lendo do localStorage
   const [isLogged, setIsLogged] = useState<boolean>(() => {
-    const stored = localStorage.getItem("isLogged");
-    return stored === "true"; // converte string para boolean
+    return localStorage.getItem("isLogged") === "true";
   });
 
   const [userData, setUserData] = useState<IUserData | null>(() => {
@@ -26,11 +24,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return stored ? JSON.parse(stored) : null;
   });
 
-  // Sincroniza estado com localStorage sempre que isLogged ou userData mudam
+  // Sincroniza sempre que isLogged mudar
   useEffect(() => {
     localStorage.setItem("isLogged", isLogged.toString());
   }, [isLogged]);
 
+  // Sincroniza sempre que userData mudar
   useEffect(() => {
     if (userData) {
       localStorage.setItem("userData", JSON.stringify(userData));
@@ -44,25 +43,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     password: string
   ): Promise<boolean> => {
     try {
-      // Requisição para autenticação (ajuste se precisar capturar token)
       await axios.post<IUserData>("http://localhost:8080/auth/login", {
         username,
         password,
       });
 
-      // Busca dados do usuário
       const userResponse = await axios.get(
         `http://localhost:8080/compradores/${username}`
       );
+
       setUserData(userResponse.data as IUserData);
       setIsLogged(true);
 
       console.log("LOGADO");
       return true;
     } catch (error) {
+      console.log("ERRO AO LOGAR:", error);
       setIsLogged(false);
       setUserData(null);
-      console.log("ERRO", error);
       return false;
     }
   };
@@ -72,10 +70,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUserData(null);
     localStorage.removeItem("isLogged");
     localStorage.removeItem("userData");
+
+    axios.post("http://localhost:8080/auth/logoff").catch(() => {});
   };
 
   return (
-    <AuthContext.Provider value={{ isLogged, login, logout, userData }}>
+    <AuthContext.Provider value={{ isLogged, userData, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

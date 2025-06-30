@@ -51,14 +51,21 @@ public class CompradorService {
 
     @Transactional
     public Comprador updateComprador(Long id, CompradorRequestDTO dto) {
+        System.out.println("🚨 DTO recebido: " + dto);
+
         if (dto == null) {
             throw new IllegalArgumentException("Informe algum campo para atualizar dados");
         }
 
         Comprador comprador = compradorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Comprador não encontrado"));
+        comprador.setNome(dto.nome()); // manualmente para ver se altera
 
+        System.out.println("Antes: " + comprador);
         compradorMapper.updateFromDto(dto, comprador);
+        System.out.println("Depois: " + comprador);
+
+        ///compradorMapper.updateFromDto(dto, comprador);
 
         return compradorRepository.save(comprador);
     }

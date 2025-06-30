@@ -47,3 +47,25 @@ export function useSendData(): UseMutationResult<IUserData, Error, IUserData> {
     },
   });
 }
+
+// Função para atualizar dados (PUT)
+const updateData = async (userData: IUserData): Promise<IUserData> => {
+  const response = await axios.put<IUserData>(
+    `${API_URL}/compradores/atualizar/${userData.id}`,
+    userData
+  );
+  return response.data;
+};
+
+// Hook PUT
+export function useUpdateData(): UseMutationResult<IUserData, Error, IUserData> {
+  return useMutation({
+    mutationFn: updateData,
+    onSuccess: (data: IUserData) => {
+      console.log("Usuário atualizado com sucesso:", data);
+    },
+    onError: (error: any) => {
+      console.error("Erro ao atualizar usuário:", error);
+    },
+  });
+}

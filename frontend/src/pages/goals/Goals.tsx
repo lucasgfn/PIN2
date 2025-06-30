@@ -9,7 +9,7 @@ import {
   usePostQuantidadePaginas,
   useFetchGoal,
   useFetchDiasLidos,
-  useUpdateMonthGoals, // novo hook para atualizar metas mensais
+  useUpdateMonthGoals, 
 } from "../../hook/useGoalData";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";

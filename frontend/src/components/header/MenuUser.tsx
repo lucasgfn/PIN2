@@ -34,7 +34,7 @@ const UserMenu: React.FC = () => {
             navigate('/perfil');
             break;
         case 'EditarDados':
-            navigate('/editar-dados');
+            navigate('/update');
             break;
         case 'Sair': 
             logout();
