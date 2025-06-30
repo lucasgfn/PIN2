@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import { Box, Button, Container, Paper } from "@mui/material";
 import Header from "../../components/header/Header";
 import ReadGoals from "./ReadGoals";
 import PageGoals from "./PageGoals";
@@ -9,6 +9,7 @@ import {
   usePostQuantidadePaginas,
   useFetchGoal,
   useFetchDiasLidos,
+  useUpdateMonthGoals, // novo hook para atualizar metas mensais
 } from "../../hook/useGoalData";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
@@ -17,7 +18,6 @@ import MonthGoals from "./MonthGoals";
 const Goals: React.FC = () => {
   const { userData, isLogged, logout } = useAuth();
 
-  // Redireciona se não logado ou sem dados do usuário
   if (!isLogged || !userData) {
     logout();
     return <Navigate to="/login" />;
@@ -30,10 +30,16 @@ const Goals: React.FC = () => {
 
   const [diasLidos, setDiasLidos] = useState<string[]>([]);
   const [quantidadePaginas, setQuantidadePaginas] = useState<number | "">("");
+  const [metasMensais, setMetasMensais] = useState<string[]>([]);
 
   useEffect(() => {
-    if (goalData?.quantidadePaginas !== undefined) {
-      setQuantidadePaginas(goalData.quantidadePaginas);
+    if (goalData) {
+      if (goalData.quantidadePaginas !== undefined) {
+        setQuantidadePaginas(goalData.quantidadePaginas);
+      }
+      if (goalData.metasMensais) {
+        setMetasMensais(goalData.metasMensais);
+      }
     }
   }, [goalData]);
 
@@ -46,11 +52,31 @@ const Goals: React.FC = () => {
   const { mutate: salvarDiasLidos } = usePutDiasLidos();
   const { mutate: salvarGoal } = usePostQuantidadePaginas(compradorId);
 
+  const { mutate: updateMetasMensaisMutate } = useUpdateMonthGoals(
+    goalData?.id ?? 0,
+    {
+      onSuccess: (data) => {
+        setMetasMensais(data.metasMensais || []);
+      },
+      onError: (error) => {
+        console.error("Erro ao atualizar metas mensais:", error);
+      },
+    }
+  );
+
+  const handleSetMetasMensais = (novasMetas: string[]) => {
+    setMetasMensais(novasMetas);
+    if (goalData?.id) {
+      updateMetasMensaisMutate(novasMetas);
+    }
+  };
+
   const handleSalvar = () => {
     if (quantidadePaginas !== "") {
       salvarGoal({
         quantidadePaginas: Number(quantidadePaginas),
         diasLidos,
+        metasMensais, 
       });
     }
 
@@ -144,8 +170,11 @@ const Goals: React.FC = () => {
                 backgroundColor: "#F5F5F5",
               }}
             >
-              <Box sx={{ width: "70%" }}>
-                <MonthGoals />
+              <Box sx={{ width: "100%" }}>
+                <MonthGoals
+                  metasMensais={metasMensais}
+                  setMetasMensais={handleSetMetasMensais}
+                />
               </Box>
             </Paper>
           </Box>

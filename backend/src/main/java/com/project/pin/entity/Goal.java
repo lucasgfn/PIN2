@@ -27,4 +27,9 @@ public class Goal {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Comprador comprador;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "goal_metas_mensais", joinColumns = @JoinColumn(name = "goal_id"))
+    @Column(name = "livro")
+    private List<String> metasMensais = new ArrayList<>();
+
 }

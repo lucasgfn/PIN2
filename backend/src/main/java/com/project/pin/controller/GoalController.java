@@ -81,7 +81,6 @@ public class GoalController {
                 .orElse(ResponseEntity.ok(Collections.emptyList()));
     }
 
-    // PUT atualizar dias lidos pelo id da meta (goalId)
     @PutMapping("/dias/{goalId}")
     public ResponseEntity<?> updateDiasLidos(
             @PathVariable Long goalId,
@@ -89,10 +88,12 @@ public class GoalController {
     ) {
         return goalRepository.findById(goalId)
                 .map(goal -> {
-                    goal.setDiasLidos(dias);
+                    goal.getDiasLidos().clear();
+                    goal.getDiasLidos().addAll(dias);
                     goalRepository.save(goal);
                     return ResponseEntity.ok().build();
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
 }
