@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Container, Paper } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 import Header from "../../components/header/Header";
 import ReadGoals from "./ReadGoals";
 import PageGoals from "./PageGoals";
@@ -9,7 +9,7 @@ import {
   usePostQuantidadePaginas,
   useFetchGoal,
   useFetchDiasLidos,
-  useUpdateMonthGoals, 
+  useUpdateMonthGoals,
 } from "../../hook/useGoalData";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
@@ -76,7 +76,7 @@ const Goals: React.FC = () => {
       salvarGoal({
         quantidadePaginas: Number(quantidadePaginas),
         diasLidos,
-        metasMensais, 
+        metasMensais,
       });
     }
 
@@ -97,68 +97,67 @@ const Goals: React.FC = () => {
             flexDirection: "row",
             justifyContent: "center",
             gap: 4,
-            width: "100%",
           }}
         >
-          <Box sx={{ width: "25%", overflow: "auto" }}>
+          <Box sx={{ width: "30%", overflow: "auto" }}>
             <PerfilComprador />
           </Box>
-          <Box sx={{ width: "70%" }}>
-            <Container maxWidth="lg">
-              <Paper
-                elevation={3}
+          <Box sx={{ width: "80%" }}>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 6,
+                mt: 8,
+                borderRadius: 10,
+                border: "2px solid",
+                borderColor: "#FF4081",
+                backgroundColor: "#F5F5F5",
+                width: "90%",
+              }}
+            >
+              <Box
                 sx={{
-                  p: 6,
-                  mt: 8,
-                  borderRadius: 10,
-                  border: "2px solid",
-                  borderColor: "#FF4081",
                   backgroundColor: "#F5F5F5",
+                  display: "flex",
+                  gap: 4,
+                  justifyContent: "left",
                 }}
               >
-                <Box
+                {/* Paper azul envolvendo só ReadGoals */}
+                <Paper
+                  elevation={3}
                   sx={{
+                    p: 6,
+                    borderRadius: 10,
+                    border: "2px solid",
+                    borderColor: "#007BFF",
                     backgroundColor: "#F5F5F5",
-                    display: "flex",
-                    gap: 4,
-                    justifyContent: "left",
+                    flex: 1,
                   }}
                 >
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      p: 6,
-                      borderRadius: 10,
-                      border: "2px solid",
-                      borderColor: "#007BFF",
-                      backgroundColor: "#F5F5F5",
-                      flex: 1,
-                    }}
-                  >
-                    <Box sx={{ display: "flex", gap: 4 }}>
-                      <Box sx={{ flex: 1 }}>
-                        <ReadGoals
-                          diasSelecionados={diasLidos}
-                          setDiasSelecionados={setDiasLidos}
-                        />
-                      </Box>
-                      <Box
-                        sx={{
-                          flex: 1,
-                          backgroundColor: "#F5F5F5",
-                          borderRadius: 2,
-                        }}
-                      >
-                        <PageGoals
-                          quantidadePaginas={quantidadePaginas}
-                          setQuantidadePaginas={setQuantidadePaginas}
-                        />
-                      </Box>
-                    </Box>
-                  </Paper>
+                  <ReadGoals
+                    diasSelecionados={diasLidos}
+                    setDiasSelecionados={setDiasLidos}
+                  />
+                </Paper>
+
+                {/* PageGoals fora do Paper azul */}
+                <Box
+                  sx={{
+                    flex: 1,
+                    backgroundColor: "#F5F5F5",
+                    borderRadius: 2,
+                    p: 2,
+                  }}
+                >
+                  <PageGoals
+                    quantidadePaginas={quantidadePaginas}
+                    setQuantidadePaginas={setQuantidadePaginas}
+                  />
                 </Box>
-              </Paper>
-            </Container>
+              </Box>
+            </Paper>
+
             <Paper
               elevation={3}
               sx={{
@@ -168,9 +167,10 @@ const Goals: React.FC = () => {
                 border: "2px solid",
                 borderColor: "#8A2BE2",
                 backgroundColor: "#F5F5F5",
+                width: "90%",
               }}
             >
-              <Box sx={{ width: "100%" }}>
+              <Box sx={{ width: "90%" }}>
                 <MonthGoals
                   metasMensais={metasMensais}
                   setMetasMensais={handleSetMetasMensais}

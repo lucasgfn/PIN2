@@ -5,13 +5,13 @@ const CustomTextField = (props: TextFieldProps) => {
     <TextField
       fullWidth
       margin="normal"
-      required
+      required={props.required ?? true} 
       {...props}
       sx={{
         ...props.sx,
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
-            height : 52,
+            height: 52,
             borderColor: "#623333",
             borderRadius: 25,
           },

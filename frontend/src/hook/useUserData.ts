@@ -17,6 +17,10 @@ const updateData = async (userData: IUserData): Promise<IUserData> => {
   return response.data;
 };
 
+type UseUpdateDataProps = {
+  onSuccess?: (data: IUserData) => void;
+  onError?: (error: unknown) => void;
+};
 
 // Função para buscar dados
 const fetchData = async (): Promise<IUserData[]> => {
@@ -59,21 +63,22 @@ export function useSendData(): UseMutationResult<IUserData, Error, IUserData> {
 
 
 // Hook PUT
-export function useUpdateData(): UseMutationResult<
-  IUserData,
-  Error,
-  IUserData
-> {
+export function useUpdateData({
+  onSuccess,
+  onError,
+}: UseUpdateDataProps = {}): UseMutationResult<IUserData, Error, IUserData> {
   const { setUserData } = useAuth();
 
   return useMutation({
     mutationFn: updateData,
-    onSuccess: (data: IUserData) => {
+    onSuccess: (data) => {
       console.log("Usuário atualizado com sucesso:", data);
-      setUserData(data); // Atualiza o contexto com os dados novos
+      setUserData(data);
+      onSuccess?.(data);
     },
-    onError: (error: any) => {
+    onError: (error) => {
       console.error("Erro ao atualizar usuário:", error);
+      onError?.(error);
     },
   });
 }

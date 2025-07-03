@@ -1,10 +1,18 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Paper,
+  Typography,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import CustomTextField from "./Fields/CustomTextField";
 import ImageUpload from "./Fields/ImageUpload";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { useUpdateData } from "../../hook/useUserData";  
+import { useUpdateData } from "../../hook/useUserData";
 import type { IUserData } from "../../interface/IUserData";
 
 const UpdateForm: React.FC = () => {
@@ -24,10 +32,9 @@ const UpdateForm: React.FC = () => {
   const [cpf, setCpf] = useState("");
   const [imagem, setImagem] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [successOpen, setSuccessOpen] = useState(false); // controle do popup
 
-  const mutationUpdate = useUpdateData(); // hook para PUT
-
-
+  // Atualiza os campos quando userData mudar
   useEffect(() => {
     if (userData) {
       setUsername(userData.username || "");
@@ -44,6 +51,7 @@ const UpdateForm: React.FC = () => {
     }
   }, [userData]);
 
+  // Conversão arquivo para base64
   const fileToBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -52,6 +60,14 @@ const UpdateForm: React.FC = () => {
       reader.onerror = reject;
     });
 
+  // Hook para atualizar usuário com callback onSuccess abrindo popup
+  const mutationUpdate = useUpdateData({
+    onSuccess: () => {
+      setSuccessOpen(true);
+    },
+  });
+
+  // Submissão do formulário
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -79,139 +95,167 @@ const UpdateForm: React.FC = () => {
       };
 
       mutationUpdate.mutate(updatedUser);
-      navigate("/perfil");
+      // Remove o navigate daqui para navegar após fechar o snackbar
     } catch (err) {
       console.error(err);
       setError("Erro ao atualizar usuário.");
     }
   };
 
+  // Fechar popup e navegar
+  const handleCloseSnackbar = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") return;
+    setSuccessOpen(false);
+    navigate("/perfil");
+  };
+
   return (
-    <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "100vh", py: 4 }}>
-      <Container maxWidth="lg">
-        <Paper
-          elevation={3}
-          sx={{
-            p: 6,
-            borderRadius: 20,
-            border: "2px solid",
-            borderColor: "#623333",
-            backgroundColor: "#F5F5F5",
-          }}
-        >
-          <Box component="form" onSubmit={handleUpdate}>
-            <CustomTextField
-              label="Username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <CustomTextField
-              label="Senha"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <CustomTextField
-              label="Nome"
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-            <CustomTextField
-              label="CPF"
-              type="text"
-              inputProps={{ maxLength: 11 }}
-              value={cpf}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^\d{0,11}$/.test(val)) setCpf(val);
-              }}
-            />
-            <CustomTextField
-              label="Endereço"
-              type="text"
-              value={endereco}
-              onChange={(e) => setEndereco(e.target.value)}
-            />
-            <CustomTextField
-              label="Bairro"
-              type="text"
-              value={bairro}
-              onChange={(e) => setBairro(e.target.value)}
-            />
-            <CustomTextField
-              label="Cidade"
-              type="text"
-              value={cidade}
-              onChange={(e) => setCidade(e.target.value)}
-            />
-            <CustomTextField
-              label="CEP"
-              type="text"
-              inputProps={{ maxLength: 8 }}
-              value={cep}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^\d{0,8}$/.test(val)) setCEP(val);
-              }}
-            />
-            <CustomTextField
-              label="Estado"
-              type="text"
-              value={estado}
-              onChange={(e) => setEstado(e.target.value)}
-            />
-            <CustomTextField
-              label="Telefone"
-              type="text"
-              inputProps={{ maxLength: 11 }}
-              value={telefone}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^\d{0,11}$/.test(val)) setTelefone(val);
-              }}
-            />
-            <CustomTextField
-              label="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <Box mt={3}>
-              <ImageUpload onImageSelect={(file) => setImagem(file)} />
-            </Box>
-
-            {error && (
-              <Typography color="error" mt={2}>
-                {error}
-              </Typography>
-            )}
-
-            <Box display="flex" justifyContent="center" mt={4}>
-              <Button
-                variant="outlined"
-                type="submit"
-                sx={{
-                  fontSize: "1.1rem",
-                  px: 7,
-                  borderRadius: 3,
-                  borderColor: "#335D62",
-                  color: "#335D62",
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                    borderColor: "#335D62",
-                  },
+    <>
+      <Box sx={{ backgroundColor: "#F5F5F5", minHeight: "100vh", py: 4 }}>
+        <Container maxWidth="lg">
+          <Paper
+            elevation={3}
+            sx={{
+              p: 6,
+              borderRadius: 20,
+              border: "2px solid",
+              borderColor: "#623333",
+              backgroundColor: "#F5F5F5",
+            }}
+          >
+            <Box component="form" onSubmit={handleUpdate}>
+              <CustomTextField
+                label="Username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <CustomTextField
+                label="Senha"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required={false}
+              />
+              <CustomTextField
+                label="Nome"
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+              <CustomTextField
+                label="CPF"
+                type="text"
+                inputProps={{ maxLength: 11 }}
+                value={cpf}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d{0,11}$/.test(val)) setCpf(val);
                 }}
-              >
-                Atualizar
-              </Button>
+              />
+              <CustomTextField
+                label="Endereço"
+                type="text"
+                value={endereco}
+                onChange={(e) => setEndereco(e.target.value)}
+              />
+              <CustomTextField
+                label="Bairro"
+                type="text"
+                value={bairro}
+                onChange={(e) => setBairro(e.target.value)}
+              />
+              <CustomTextField
+                label="Cidade"
+                type="text"
+                value={cidade}
+                onChange={(e) => setCidade(e.target.value)}
+              />
+              <CustomTextField
+                label="CEP"
+                type="text"
+                inputProps={{ maxLength: 8 }}
+                value={cep}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d{0,8}$/.test(val)) setCEP(val);
+                }}
+              />
+              <CustomTextField
+                label="Estado"
+                type="text"
+                value={estado}
+                onChange={(e) => setEstado(e.target.value)}
+              />
+              <CustomTextField
+                label="Telefone"
+                type="text"
+                inputProps={{ maxLength: 11 }}
+                value={telefone}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d{0,11}$/.test(val)) setTelefone(val);
+                }}
+              />
+              <CustomTextField
+                label="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <Box mt={3}>
+                <ImageUpload onImageSelect={(file) => setImagem(file)} />
+              </Box>
+
+              {error && (
+                <Typography color="error" mt={2}>
+                  {error}
+                </Typography>
+              )}
+
+              <Box display="flex" justifyContent="center" mt={4}>
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  sx={{
+                    fontSize: "1.1rem",
+                    px: 7,
+                    borderRadius: 3,
+                    borderColor: "#335D62",
+                    color: "#335D62",
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      borderColor: "#335D62",
+                    },
+                  }}
+                >
+                  Atualizar
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Paper>
-      </Container>
-    </Box>
+          </Paper>
+        </Container>
+      </Box>
+
+      <Snackbar
+        open={successOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Atualização realizada com sucesso!
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
 

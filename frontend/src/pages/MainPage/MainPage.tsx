@@ -84,7 +84,7 @@ const MainPage: React.FC = () => {
               src={book_gif}
               alt="book gif"
               style={{
-                margin: "-6% 75%",
+                margin: "-4% 75%",
                 width: "160px",
                 transform: "rotate(-20deg)",
               }}
