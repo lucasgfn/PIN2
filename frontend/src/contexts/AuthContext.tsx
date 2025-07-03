@@ -5,6 +5,7 @@ import type { IUserData } from "../interface/IUserData";
 interface AuthContextType {
   isLogged: boolean;
   userData: IUserData | null;
+  setUserData: (user: IUserData | null) => void; // adiciona setUserData
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
@@ -75,7 +76,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ isLogged, userData, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLogged, userData, setUserData, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

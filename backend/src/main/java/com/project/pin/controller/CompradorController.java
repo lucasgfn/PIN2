@@ -30,9 +30,10 @@ public class CompradorController {
     }
 
     @PutMapping("atualizar/{id}")
-    public ResponseEntity<Comprador> atualizar(@PathVariable Long id, @RequestBody CompradorRequestDTO dto) {
-        Comprador atualizado = compradorService.updateComprador(id, dto);
-        return ResponseEntity.ok(atualizado);
+    public ResponseEntity<CompradorResponseDTO> atualizar(@PathVariable Long id, @RequestBody CompradorRequestDTO dto) {
+        compradorService.updateComprador(id, dto);
+        CompradorResponseDTO response = compradorService.getInfosComprador(id);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("listar/{id}")

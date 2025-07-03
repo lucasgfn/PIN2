@@ -1,20 +1,30 @@
+import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import GoToMetas from "./Buttons/GoMetas";
 import { useAutorData } from "../../hook/useAutorData";
 import { useBookData } from "../../hook/useBookData";
 
-import book_gif from "../../assets/book-gif.gif"
+import book_gif from "../../assets/book-gif.gif";
 
 import AutorListContainer from "../../components/autor/AutorListContainer";
 import BookListContainer from "../../components/book/BookListCotainer";
 
-
-
 const MainPage: React.FC = () => {
   const { data: dataBook } = useBookData();
   const { data: dataAutor } = useAutorData();
+
+  const navigate = useNavigate();
+  const { isLogged } = useAuth();
+
+  useEffect(() => {
+    if (!isLogged) {
+      navigate("/login");
+    }
+  }, [isLogged, navigate]);
 
   const books = dataBook ?? [];
   const autor = dataAutor ?? [];
@@ -24,7 +34,7 @@ const MainPage: React.FC = () => {
       <Header />
       <Box
         sx={{
-          width: "20%", 
+          width: "20%",
           marginTop: "5%",
           marginLeft: "10%",
           marginBottom: 0,
@@ -32,7 +42,7 @@ const MainPage: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start", // só por clareza: "left" não é valor válido aqui
-          alignItems: "flex-start", 
+          alignItems: "flex-start",
         }}
       >
         <GoToMetas />
@@ -117,4 +127,3 @@ const MainPage: React.FC = () => {
 };
 
 export default MainPage;
- 

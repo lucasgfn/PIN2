@@ -5,8 +5,17 @@ import {
   type UseMutationResult,
 } from "@tanstack/react-query";
 import type { IUserData } from "../interface/IUserData";
+import { useAuth } from "../contexts/AuthContext";
 
 const API_URL = "http://localhost:8080";
+
+const updateData = async (userData: IUserData): Promise<IUserData> => {
+  const response = await axios.put<IUserData>(
+    `${API_URL}/compradores/atualizar/${userData.id}`,
+    userData
+  );
+  return response.data;
+};
 
 
 // Função para buscar dados
@@ -48,21 +57,20 @@ export function useSendData(): UseMutationResult<IUserData, Error, IUserData> {
   });
 }
 
-// Função para atualizar dados (PUT)
-const updateData = async (userData: IUserData): Promise<IUserData> => {
-  const response = await axios.put<IUserData>(
-    `${API_URL}/compradores/atualizar/${userData.id}`,
-    userData
-  );
-  return response.data;
-};
 
 // Hook PUT
-export function useUpdateData(): UseMutationResult<IUserData, Error, IUserData> {
+export function useUpdateData(): UseMutationResult<
+  IUserData,
+  Error,
+  IUserData
+> {
+  const { setUserData } = useAuth();
+
   return useMutation({
     mutationFn: updateData,
     onSuccess: (data: IUserData) => {
       console.log("Usuário atualizado com sucesso:", data);
+      setUserData(data); // Atualiza o contexto com os dados novos
     },
     onError: (error: any) => {
       console.error("Erro ao atualizar usuário:", error);

@@ -4,15 +4,11 @@ import com.project.pin.dto.Comprador.CompradorRequestDTO;
 import com.project.pin.dto.Comprador.CompradorResponseDTO;
 import com.project.pin.entity.Comprador;
 import com.project.pin.exceptions.UserFoundException;
-import com.project.pin.mapper.CompradorMapper;
 import com.project.pin.repository.CompradorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
@@ -20,9 +16,6 @@ import java.util.Optional;
 public class CompradorService {
     @Autowired
     private CompradorRepository compradorRepository;
-
-    @Autowired
-    private CompradorMapper compradorMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -48,27 +41,38 @@ public class CompradorService {
         this.compradorRepository.delete(compradorExistente.get());
     }
 
-
     @Transactional
     public Comprador updateComprador(Long id, CompradorRequestDTO dto) {
-        System.out.println("🚨 DTO recebido: " + dto);
-
         if (dto == null) {
             throw new IllegalArgumentException("Informe algum campo para atualizar dados");
         }
 
         Comprador comprador = compradorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Comprador não encontrado"));
-        comprador.setNome(dto.nome()); // manualmente para ver se altera
 
-        System.out.println("Antes: " + comprador);
-        compradorMapper.updateFromDto(dto, comprador);
-        System.out.println("Depois: " + comprador);
+        // Atualiza apenas os campos não-nulos
+        if (dto.nome() != null) comprador.setNome(dto.nome());
+        if (dto.email() != null) comprador.setEmail(dto.email());
+        if (dto.cpf() != null) comprador.setCpf(dto.cpf());
+        if (dto.username() != null) comprador.setUsername(dto.username());
+        if (dto.rua() != null) comprador.setRua(dto.rua());
+        if (dto.telefone() != null) comprador.setTelefone(dto.telefone());
+        if (dto.bairro() != null) comprador.setBairro(dto.bairro());
+        if (dto.cidade() != null) comprador.setCidade(dto.cidade());
+        if (dto.cep() != null) comprador.setCep(dto.cep());
+        if (dto.estado() != null) comprador.setEstado(dto.estado());
 
-        ///compradorMapper.updateFromDto(dto, comprador);
+        // Atualiza imagem, mesmo que seja null (para permitir remoção)
+        comprador.setImg(dto.img());
 
+        // Atualiza senha se não for null (com codificação)
+        if (dto.senha() != null) {
+            comprador.setPassword(passwordEncoder.encode(dto.senha()));
+        }
+        
         return compradorRepository.save(comprador);
     }
+
 
     public Comprador autenticar(String username, String senha) {
         Optional<Comprador> optionalComprador = compradorRepository.findByUsername(username);
