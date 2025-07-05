@@ -9,6 +9,7 @@ import AutorProfile from "../pages/MainPage/Autor/AutorProfile";
 import MainPage from "../pages/MainPage/MainPage";
 import PerfilDetails from "../pages/MainPage/Perfil/PerfilDetails";
 import UpdateForm from "../components/forms/UpdateForm";
+import Buscar from "../components/book/Buscar";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/update",
     element: <UpdateForm />,
+  },
+  {
+    path: "/busca",
+    element: <Buscar />,
   },
 
 ]);

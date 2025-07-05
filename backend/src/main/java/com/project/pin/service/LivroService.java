@@ -10,6 +10,7 @@ import com.project.pin.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -95,6 +96,15 @@ public class LivroService {
                 }).orElse(ResponseEntity.notFound().build());
 
     }
+
+    @Transactional
+    public List<LivroResponseDTO> buscarPorTitulo(String nomeLivro) {
+        List<Livro> livros = livroRepository.findByNomeLivroContainingIgnoreCase(nomeLivro);
+        return livros.stream().map(LivroResponseDTO::new).toList();
+    }
+
+
+
 
     // ---------------------- AUX ----------------------
 

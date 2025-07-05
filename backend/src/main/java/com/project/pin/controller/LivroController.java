@@ -42,5 +42,12 @@ public class LivroController {
         return livroService.updateLivro(id, livroRequestDTO);
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<LivroResponseDTO>> buscarPorTitulo(@RequestParam String nomeLivro) {
+        List<LivroResponseDTO> livros = livroService.buscarPorTitulo(nomeLivro);
+        return ResponseEntity.ok(livros);
+    }
+
+
 }
 

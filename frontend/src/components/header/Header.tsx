@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search"
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo_short.jpg"
 import MenuUser from "../header/MenuUser.tsx";
+import { useState } from "react";
 
 const Search = styled('div')(() => ({
     position: "relative",
@@ -44,6 +45,14 @@ const Header: React.FC = () => {
 
     const goToMain = () => {
       navigate("/main");
+    };
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearch = () => {
+      if (!searchTerm.trim()) return;
+    
+      navigate(`/busca?query=${encodeURIComponent(searchTerm.trim())}`);
     };
 
     return (
@@ -97,6 +106,12 @@ const Header: React.FC = () => {
                 <SearchInputBase
                   placeholder="Buscar..."
                   inputProps={{ "aria-label": "search" }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch(); // Chama a busca ao apertar Enter
+                  }}}
                 />
               </Search>
             </div>
