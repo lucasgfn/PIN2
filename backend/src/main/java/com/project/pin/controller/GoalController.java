@@ -22,7 +22,6 @@ public class GoalController {
     @Autowired
     private CompradorRepository compradorRepository;
 
-    // GET meta páginas pelo compradorId
     @GetMapping("/paginas/{compradorId}")
     public ResponseEntity<Goal> getQuantidadePaginas(@PathVariable Long compradorId) {
         Optional<Goal> goal = goalRepository.findByCompradorId(compradorId);
@@ -30,7 +29,6 @@ public class GoalController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST criar meta páginas vinculada ao compradorId
     @PostMapping("/paginas/{compradorId}")
     public ResponseEntity<Goal> createGoal(
             @PathVariable Long compradorId,
@@ -39,7 +37,6 @@ public class GoalController {
         Comprador comprador = compradorRepository.findById(compradorId)
                 .orElseThrow(() -> new RuntimeException("Comprador não encontrado"));
 
-        // Se já existe meta para esse comprador, atualize ela (opcional)
         Optional<Goal> existingGoal = goalRepository.findByCompradorId(compradorId);
         Goal goal = existingGoal.orElse(new Goal());
 
@@ -51,7 +48,7 @@ public class GoalController {
         return ResponseEntity.ok(savedGoal);
     }
 
-    // POST criar ou atualizar dias lidos para comprador específico
+
     @PostMapping("/dias/{compradorId}")
     public ResponseEntity<Goal> createOrUpdateDiasLidos(
             @PathVariable Long compradorId,
@@ -72,8 +69,7 @@ public class GoalController {
         Goal savedGoal = goalRepository.save(goal);
         return ResponseEntity.ok(savedGoal);
     }
-
-    // GET dias lidos pelo compradorId
+    
     @GetMapping("/dias/{compradorId}")
     public ResponseEntity<List<String>> getDiasLidos(@PathVariable Long compradorId) {
         Optional<Goal> goal = goalRepository.findByCompradorId(compradorId);
