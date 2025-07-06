@@ -4,7 +4,7 @@ import { useQuery, useMutation, type UseMutationResult } from '@tanstack/react-q
 
 const API_URL = "http://localhost:8080";
 
-// Função para buscar dados
+// Buscar dados
 const fetchData = async (): Promise<IBookData[]> => {
     console.log("🔄 Fazendo requisição para:", API_URL + '/livros');
     const response = await axios.get<IBookData[]>(API_URL + '/livros');
@@ -12,7 +12,7 @@ const fetchData = async (): Promise<IBookData[]> => {
     return response.data;
 };
 
-// Função para enviar dados
+// Enviar dados
 const sendData = async (booktData: IBookData): Promise<IBookData> => {
     const response = await axios.post<IBookData>(API_URL + '/livros', booktData);
     return response.data;

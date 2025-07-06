@@ -123,7 +123,6 @@ const Goals: React.FC = () => {
                   justifyContent: "left",
                 }}
               >
-                {/* Paper azul envolvendo só ReadGoals */}
                 <Paper
                   elevation={3}
                   sx={{
@@ -140,8 +139,6 @@ const Goals: React.FC = () => {
                     setDiasSelecionados={setDiasLidos}
                   />
                 </Paper>
-
-                {/* PageGoals fora do Paper azul */}
                 <Box
                   sx={{
                     flex: 1,

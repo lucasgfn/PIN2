@@ -22,15 +22,15 @@ type UseUpdateDataProps = {
   onError?: (error: unknown) => void;
 };
 
-// Função para buscar dados
+// Bucar dados
 const fetchData = async (): Promise<IUserData[]> => {
-  console.log("🔄 Fazendo requisição para:", API_URL + "/compradores");
+  console.log("Fazendo requisição para:", API_URL + "/compradores");
   const response = await axios.get<IUserData[]>(API_URL + "/compradores");
-  console.log("✅ Resposta recebida:", response.data);
+  console.log(" Resposta recebida:", response.data);
   return response.data;
 };
 
-// Função para enviar dados
+// Enviar dados
 const sendData = async (userData: IUserData): Promise<IUserData> => {
   const response = await axios.post<IUserData>(
     API_URL + "/compradores",

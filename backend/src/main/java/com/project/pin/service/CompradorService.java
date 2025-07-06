@@ -69,10 +69,9 @@ public class CompradorService {
         if (dto.senha() != null) {
             comprador.setPassword(passwordEncoder.encode(dto.senha()));
         }
-        
+
         return compradorRepository.save(comprador);
     }
-
 
     public Comprador autenticar(String username, String senha) {
         Optional<Comprador> optionalComprador = compradorRepository.findByUsername(username);

@@ -15,7 +15,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // Inicializa lendo do localStorage
   const [isLogged, setIsLogged] = useState<boolean>(() => {
     return localStorage.getItem("isLogged") === "true";
   });
@@ -25,12 +24,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return stored ? JSON.parse(stored) : null;
   });
 
-  // Sincroniza sempre que isLogged mudar
   useEffect(() => {
     localStorage.setItem("isLogged", isLogged.toString());
   }, [isLogged]);
 
-  // Sincroniza sempre que userData mudar
   useEffect(() => {
     if (userData) {
       localStorage.setItem("userData", JSON.stringify(userData));

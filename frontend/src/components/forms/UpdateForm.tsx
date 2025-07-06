@@ -32,9 +32,8 @@ const UpdateForm: React.FC = () => {
   const [cpf, setCpf] = useState("");
   const [imagem, setImagem] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [successOpen, setSuccessOpen] = useState(false); // controle do popup
+  const [successOpen, setSuccessOpen] = useState(false); 
 
-  // Atualiza os campos quando userData mudar
   useEffect(() => {
     if (userData) {
       setUsername(userData.username || "");
@@ -51,7 +50,7 @@ const UpdateForm: React.FC = () => {
     }
   }, [userData]);
 
-  // Conversão arquivo para base64
+
   const fileToBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -60,14 +59,13 @@ const UpdateForm: React.FC = () => {
       reader.onerror = reject;
     });
 
-  // Hook para atualizar usuário com callback onSuccess abrindo popup
+  // Hook 
   const mutationUpdate = useUpdateData({
     onSuccess: () => {
       setSuccessOpen(true);
     },
   });
 
-  // Submissão do formulário
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -95,14 +93,13 @@ const UpdateForm: React.FC = () => {
       };
 
       mutationUpdate.mutate(updatedUser);
-      // Remove o navigate daqui para navegar após fechar o snackbar
+     
     } catch (err) {
       console.error(err);
       setError("Erro ao atualizar usuário.");
     }
   };
 
-  // Fechar popup e navegar
   const handleCloseSnackbar = (
     _event?: React.SyntheticEvent | Event,
     reason?: string

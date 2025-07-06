@@ -1,46 +1,38 @@
-import { Typography, TextField, Box, Button, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useEffect, useState } from "react";
 import {
-  useFetchGoal,
-  useUpdateMonthGoals,
-  useDeleteMonthGoal,
-} from "../../hook/useGoalData";
-import { useAuth } from "../../contexts/AuthContext";
+  Typography,
+  TextField,
+  Box,
+  Button,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
 
-const MonthGoals: React.FC = () => {
+interface MonthGoalsProps {
+  metasMensais: string[];
+  setMetasMensais: (metas: string[]) => void;
+}
+
+const MonthGoals: React.FC<MonthGoalsProps> = ({
+  metasMensais,
+  setMetasMensais,
+}) => {
   const [labelText, setLabelText] = useState("");
-  const [labels, setLabels] = useState<string[]>([]);
-
-  const { userData } = useAuth();
-  const compradorId = userData?.id ?? 0;
-
-  const { data: goalData } = useFetchGoal(compradorId);
-  const { mutate: updateMonthGoals } = useUpdateMonthGoals(goalData?.id ?? 0);
-  const { mutate: deleteMonthGoal } = useDeleteMonthGoal(goalData?.id ?? 0);
-
-  // Carrega metas mensais do backend
-  useEffect(() => {
-    if (goalData?.metasMensais) {
-      setLabels(goalData.metasMensais);
-    }
-  }, [goalData]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
 
   const handleAddLabel = () => {
     const novaMeta = labelText.trim();
-    if (novaMeta && !labels.includes(novaMeta)) {
-      const novasMetas = [novaMeta, ...labels];
-      setLabels(novasMetas);
-      updateMonthGoals(novasMetas);
+    if (novaMeta && !metasMensais.includes(novaMeta)) {
+      const novasMetas = [novaMeta, ...metasMensais];
+      setMetasMensais(novasMetas);
       setLabelText("");
     }
-  };
-
-  const handleDeleteLabel = (index: number) => {
-    const livro = labels[index];
-    const novasMetas = labels.filter((_, i) => i !== index);
-    setLabels(novasMetas);
-    deleteMonthGoal(livro);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -48,6 +40,15 @@ const MonthGoals: React.FC = () => {
       e.preventDefault();
       handleAddLabel();
     }
+  };
+
+  const confirmDelete = () => {
+    if (indexToDelete !== null) {
+      const novasMetas = metasMensais.filter((_, i) => i !== indexToDelete);
+      setMetasMensais(novasMetas);
+    }
+    setOpenDialog(false);
+    setIndexToDelete(null);
   };
 
   return (
@@ -91,9 +92,8 @@ const MonthGoals: React.FC = () => {
           </Button>
         </Box>
 
-        {/* Lista de metas adicionadas */}
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {labels.map((label, index) => (
+          {metasMensais.map((label, index) => (
             <Box
               key={index}
               sx={{
@@ -112,7 +112,10 @@ const MonthGoals: React.FC = () => {
               <IconButton
                 aria-label="delete"
                 size="small"
-                onClick={() => handleDeleteLabel(index)}
+                onClick={() => {
+                  setIndexToDelete(index);
+                  setOpenDialog(true);
+                }}
               >
                 <DeleteIcon fontSize="small" sx={{ color: "#8A2BE2" }} />
               </IconButton>
@@ -120,6 +123,27 @@ const MonthGoals: React.FC = () => {
           ))}
         </Box>
       </Box>
+
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="confirm-dialog-title"
+      >
+        <DialogTitle id="confirm-dialog-title">Confirmar exclusão</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Tem certeza de que deseja excluir essa meta de leitura?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDialog(false)} color="inherit">
+            Cancelar
+          </Button>
+          <Button onClick={confirmDelete} autoFocus color="error">
+            Excluir
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

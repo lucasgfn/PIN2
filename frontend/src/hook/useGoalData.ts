@@ -8,8 +8,6 @@ import type { IGoalData } from "../interface/IGoalData";
 
 const API_URL = "http://localhost:8080";
 
-// ================== GOALS (PÁGINAS & DIAS) ==================
-
 const fetchGoal = async (compradorId: number): Promise<IGoalData> => {
   const response = await axios.get<IGoalData>(
     `${API_URL}/goals/paginas/${compradorId}`
@@ -38,7 +36,7 @@ export const usePostQuantidadePaginas = (compradorId?: number) => {
       return await axios.post(`${API_URL}/goals/paginas/${compradorId}`, dados);
     },
     onError: (error) => {
-      console.error("❌ Erro ao criar meta: ", error);
+      console.error(" Erro ao criar meta: ", error);
     },
   });
 };
@@ -69,10 +67,10 @@ export function usePutDiasLidos(): UseMutationResult<
   return useMutation({
     mutationFn: putDiasLidos,
     onSuccess: () => {
-      console.log("📅 Dias lidos atualizados com sucesso");
+      console.log(" Dias lidos atualizados");
     },
     onError: (error) => {
-      console.error("❌ Erro ao atualizar dias lidos:", error);
+      console.error(" Erro ao atualizar dias lidos:", error);
     },
   });
 }
@@ -83,10 +81,10 @@ export function usePostDiasLidos(
   return useMutation({
     mutationFn: (dias) => postDiasLidos(compradorId, dias),
     onSuccess: (data) => {
-      console.log("📅 Dias lidos criados/atualizados com sucesso:", data);
+      console.log("Dias lidos criados/atualizados com sucesso:", data);
     },
     onError: (error) => {
-      console.error("❌ Erro ao criar/atualizar dias lidos:", error);
+      console.error("Erro ao criar/atualizar dias lidos:", error);
     },
   });
 }
@@ -101,8 +99,6 @@ const postDiasLidos = async (
   );
   return response.data;
 };
-
-// ================== MONTH GOALS (metasMensais) ==================
 
 export function useFetchMonthGoals(compradorId: number) {
   return useQuery<IGoalData>({
@@ -127,10 +123,10 @@ export function useUpdateMonthGoals(goalId: number, p0: { onSuccess: (data: any)
       return response.data;
     },
     onSuccess: (data) => {
-      console.log("📘 Metas mensais atualizadas:", data);
+      console.log(" Metas mensais atualizadas:", data);
     },
     onError: (error) => {
-      console.error("❌ Erro ao atualizar metas mensais:", error);
+      console.error(" Erro ao atualizar metas mensais:", error);
     },
   });
 }
@@ -147,10 +143,10 @@ export function useDeleteMonthGoal(goalId: number) {
       return response.data;
     },
     onSuccess: (data) => {
-      console.log("🗑️ Livro removido das metas mensais:", data);
+      console.log(" Livro removido das metas mensais:", data);
     },
     onError: (error) => {
-      console.error("❌ Erro ao remover livro da meta mensal:", error);
+      console.error(" Erro ao remover livro da meta mensal:", error);
     },
   });
 }

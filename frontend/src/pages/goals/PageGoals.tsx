@@ -4,13 +4,11 @@ import React from "react";
 type PageGoalsProps = {
   quantidadePaginas: number | "";
   setQuantidadePaginas: React.Dispatch<React.SetStateAction<number | "">>;
-  paginaAtual?: number; // <-- página atual do usuário, opcional
 };
 
 const PageGoals: React.FC<PageGoalsProps> = ({
   quantidadePaginas,
   setQuantidadePaginas,
-  paginaAtual,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valor = event.target.value;
@@ -52,16 +50,6 @@ const PageGoals: React.FC<PageGoalsProps> = ({
             },
           }}
         />
-
-        {/* Exibir página atual ao lado */}
-        {paginaAtual !== undefined && (
-          <Typography
-            variant="body1"
-            sx={{ fontWeight: "bold", color: "#007BFF" }}
-          >
-            Página atual: {paginaAtual}
-          </Typography>
-        )}
       </Box>
     </>
   );
