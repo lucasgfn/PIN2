@@ -1,4 +1,4 @@
-# LitQuest 
+# LitQuest
 
 > Projeto integrador desenvolvido por **Clara dos Santos Becker** e **Lucas Gabriel Falcade Nunes**
 
@@ -9,21 +9,21 @@ O **LitQuest** é uma plataforma de **vendas de livros online** que combina e-co
 ##  Tecnologias Utilizadas
 
 - `Java` com `Spring Boot`
-- `PostgreSQL` (banco de dados relacional)
-- `JPA / Hibernate` (persistência)
+- `PostgreSQL` 
+- `JPA / Hibernate` 
 - `REST APIs` com respostas em `JSON`
 - Arquitetura em camadas (`Controller`, `Service`, `DTO`, `Entity`, `Repository`)
 - Frontend planejado com prototipação no Figma
 
 ## Documentação Completa
 
-[Documentação - LitQuest (PDF)](doc/LitQuest-Doc.pdf)
+- [Documentação - LitQuest (PDF)](doc/LitQuest-Doc.pdf)
 
 
 ---
 
 ### Desenvolvedores
 
-- Clara dos Santos Becker  
-- Lucas Gabriel Falcade Nunes
+- [Clara dos Santos Becker](https://github.com/clarabecker)
+- [Lucas Gabriel Falcade Nunes](https://github.com/lucasgfn/)
 
