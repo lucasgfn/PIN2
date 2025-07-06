@@ -53,7 +53,7 @@ const router = createBrowserRouter([
     element: <UpdateForm />,
   },
   {
-    path: "/busca",
+    path: "/buscar",
     element: <Buscar />,
   },
 
