@@ -1,5 +1,29 @@
-# PROJETO INTEGRADOR 
+# LitQuest 
 
-> O LitQuest é um sistema de vendas de livros online com o objetivo de atrair e manter o público de leitores, visto que o site proporciona jornada literária com recompensas à medida que o usuário avança no processo de leitura e compra de livros. Para isso, buscamos a imersão do usuário nas atividades propostas pelo site e personalização de suas metas de leitura.  Bem como, facilitar a escolha da próxima compra realizada pelo usuário e proporcionar simplicidade na utilização das ferramentas de compra do site.  
+> Projeto integrador desenvolvido por **Clara dos Santos Becker** e **Lucas Gabriel Falcade Nunes**
 
-> Realizado por Clara dos Santos Becker e Lucas G. Falcade Nunes
+## Sobre o Projeto
+
+O **LitQuest** é uma plataforma de **vendas de livros online** que combina e-commerce com **gamificação da leitura**. O sistema foi projetado para **engajar leitores**, oferecendo uma **jornada literária interativa**, com metas, trilhas, desafios e recompensas ao longo da experiência de leitura e compra.
+
+##  Tecnologias Utilizadas
+
+- `Java` com `Spring Boot`
+- `PostgreSQL` (banco de dados relacional)
+- `JPA / Hibernate` (persistência)
+- `REST APIs` com respostas em `JSON`
+- Arquitetura em camadas (`Controller`, `Service`, `DTO`, `Entity`, `Repository`)
+- Frontend planejado com prototipação no Figma
+
+## Documentação Completa
+
+[Documentação - LitQuest (PDF)](doc/LitQuest-Doc.pdf)
+
+
+---
+
+### Desenvolvedores
+
+- Clara dos Santos Becker  
+- Lucas Gabriel Falcade Nunes
+
