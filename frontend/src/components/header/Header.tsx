@@ -52,7 +52,7 @@ const Header: React.FC = () => {
     const handleSearch = () => {
       if (!searchTerm.trim()) return;
     
-      navigate(`/busca?query=${encodeURIComponent(searchTerm.trim())}`);
+      navigate(`/buscar?query=${encodeURIComponent(searchTerm.trim())}`);
     };
 
     return (
