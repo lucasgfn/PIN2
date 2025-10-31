@@ -25,13 +25,16 @@ const Goals: React.FC = () => {
 
   const compradorId = userData.id;
 
+  // Hooks de dados
   const { data: goalData } = useFetchGoal(compradorId);
   const { data: diasLidosData } = useFetchDiasLidos(compradorId);
 
+  // Estados locais
   const [diasLidos, setDiasLidos] = useState<string[]>([]);
   const [quantidadePaginas, setQuantidadePaginas] = useState<number | "">("");
   const [metasMensais, setMetasMensais] = useState<string[]>([]);
 
+  // Atualiza estados quando os dados são carregados
   useEffect(() => {
     if (goalData) {
       if (goalData.quantidadePaginas !== undefined) {
@@ -49,9 +52,9 @@ const Goals: React.FC = () => {
     }
   }, [diasLidosData]);
 
+  // Mutations
   const { mutate: salvarDiasLidos } = usePutDiasLidos();
   const { mutate: salvarGoal } = usePostQuantidadePaginas(compradorId);
-
   const { mutate: updateMetasMensaisMutate } = useUpdateMonthGoals(
     goalData?.id ?? 0,
     {
@@ -64,6 +67,7 @@ const Goals: React.FC = () => {
     }
   );
 
+  // Atualiza metas mensais
   const handleSetMetasMensais = (novasMetas: string[]) => {
     setMetasMensais(novasMetas);
     if (goalData?.id) {
@@ -71,20 +75,27 @@ const Goals: React.FC = () => {
     }
   };
 
+  // Botão de salvar (com criação automática se não existir meta)
   const handleSalvar = () => {
-    if (quantidadePaginas !== "") {
+    if (quantidadePaginas === "") {
+      alert("Informe a quantidade de páginas antes de salvar.");
+      return;
+    }
+
+    // Caso ainda não exista meta, cria uma nova
+    if (!goalData?.id) {
       salvarGoal({
         quantidadePaginas: Number(quantidadePaginas),
         diasLidos,
         metasMensais,
       });
+      alert("Meta criada com sucesso!");
+      return;
     }
 
-    if (goalData?.id) {
-      salvarDiasLidos({ id: goalData.id, dias: diasLidos });
-    } else {
-      alert("Meta ainda não carregada, aguarde...");
-    }
+    // Caso já exista, atualiza apenas os dias lidos
+    salvarDiasLidos({ id: goalData.id, dias: diasLidos });
+    alert("Metas atualizadas com sucesso!");
   };
 
   return (
@@ -99,10 +110,14 @@ const Goals: React.FC = () => {
             gap: 4,
           }}
         >
+          {/* Perfil do comprador */}
           <Box sx={{ width: "30%", overflow: "auto" }}>
             <PerfilComprador />
           </Box>
+
+          {/* Seção principal */}
           <Box sx={{ width: "80%" }}>
+            {/* Metas de leitura diárias e quantidade de páginas */}
             <Paper
               elevation={3}
               sx={{
@@ -123,6 +138,7 @@ const Goals: React.FC = () => {
                   justifyContent: "left",
                 }}
               >
+                {/* Dias lidos */}
                 <Paper
                   elevation={3}
                   sx={{
@@ -139,6 +155,8 @@ const Goals: React.FC = () => {
                     setDiasSelecionados={setDiasLidos}
                   />
                 </Paper>
+
+                {/* Quantidade de páginas */}
                 <Box
                   sx={{
                     flex: 1,
@@ -155,6 +173,7 @@ const Goals: React.FC = () => {
               </Box>
             </Paper>
 
+            {/* Metas mensais */}
             <Paper
               elevation={3}
               sx={{
@@ -176,6 +195,8 @@ const Goals: React.FC = () => {
             </Paper>
           </Box>
         </Box>
+
+        {/* Botão de salvar */}
         <Box display="flex" justifyContent="center" mt={6}>
           <Button
             variant="outlined"
