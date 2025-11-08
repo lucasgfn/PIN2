@@ -30,12 +30,16 @@ public class GoalController {
     }
 
     @PostMapping("/paginas/{compradorId}")
-    public ResponseEntity<Goal> createGoal(
+    public ResponseEntity<?> createGoal(
             @PathVariable Long compradorId,
             @RequestBody Goal goalRequest
     ) {
         Comprador comprador = compradorRepository.findById(compradorId)
                 .orElseThrow(() -> new RuntimeException("Comprador não encontrado"));
+
+        if (goalRequest.getQuantidadePaginas() == null) {
+            return ResponseEntity.badRequest().body("Campo quantidade de páginas não preenchido");
+        }
 
         Optional<Goal> existingGoal = goalRepository.findByCompradorId(compradorId);
         Goal goal = existingGoal.orElse(new Goal());
@@ -45,7 +49,8 @@ public class GoalController {
         goal.setComprador(comprador);
 
         Goal savedGoal = goalRepository.save(goal);
-        return ResponseEntity.ok(savedGoal);
+        return ResponseEntity.status(201).body("Meta criada com sucesso!");
+
     }
 
 

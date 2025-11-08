@@ -23,6 +23,12 @@ public class MonthGoalController {
 
     @PostMapping
     public Goal createGoal(@RequestBody Goal goal) {
+        if (goal.getMetasMensais() == null ||
+                goal.getMetasMensais().isEmpty() ||
+                goal.getMetasMensais().get(0).trim().isEmpty()) {
+            throw new IllegalArgumentException("Campo não preenchido");
+        }
+
         return goalRepository.save(goal);
     }
 
