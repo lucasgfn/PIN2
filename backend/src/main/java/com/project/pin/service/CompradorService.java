@@ -21,6 +21,16 @@ public class CompradorService {
     private PasswordEncoder passwordEncoder;
 
     public Comprador cadastrarComprador(Comprador comprador) {
+        if (comprador.getCpf() == null || comprador.getCpf().isBlank() ||
+                comprador.getUsername() == null || comprador.getUsername().isBlank() ||
+                comprador.getPassword() == null || comprador.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Campos obrigatórios devem ser preenchidos");
+        }
+
+        if (!comprador.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new IllegalArgumentException("O e-mail informado é inválido");
+        }
+
         this.compradorRepository.findByCpfOrUsername(comprador.getCpf(), comprador.getUsername())
                 .ifPresent((user) -> {
                     throw new UserFoundException();

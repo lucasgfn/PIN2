@@ -1,6 +1,6 @@
 package com.project.pin.dto.Livro;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 public record LivroRequestDTO(
         Long id,

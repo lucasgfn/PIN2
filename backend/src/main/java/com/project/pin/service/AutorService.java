@@ -1,8 +1,8 @@
 package com.project.pin.service;
 
 import com.project.pin.dto.Autor.AutorRequestDTO;
+
 import com.project.pin.dto.Autor.AutorResponseDTO;
-import com.project.pin.dto.Livro.LivroResponseDTO;
 import com.project.pin.dto.Livro.LivroResumoDTO;
 import com.project.pin.entity.Autor;
 import com.project.pin.repository.AutorRepository;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
+import jakarta.validation.*;
 import java.util.List;
 
 import java.util.stream.Collectors;

@@ -44,6 +44,10 @@ public class LivroController {
 
     @GetMapping("/buscar")
     public ResponseEntity<List<LivroResponseDTO>> buscarPorTitulo(@RequestParam String nomeLivro) {
+        if (nomeLivro == null || nomeLivro.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nenhuma obra foi informada");
+        }
+
         List<LivroResponseDTO> livros = livroService.buscarPorTitulo(nomeLivro);
         return ResponseEntity.ok(livros);
     }

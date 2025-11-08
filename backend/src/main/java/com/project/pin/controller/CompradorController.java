@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.*;
+
 @RestController
 @RequestMapping("/compradores")
 public class CompradorController {
@@ -17,7 +19,7 @@ public class CompradorController {
     private CompradorService compradorService;
 
     @PostMapping
-    public ResponseEntity<Comprador> cadastrar(@RequestBody Comprador comprador) {
+    public ResponseEntity<Comprador> cadastrar(@Valid @RequestBody Comprador comprador) {
         Comprador criado = compradorService.cadastrarComprador(comprador);
         return new ResponseEntity<>(criado, HttpStatus.CREATED);
     }

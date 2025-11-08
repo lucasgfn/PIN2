@@ -8,7 +8,7 @@ import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 @AllArgsConstructor
