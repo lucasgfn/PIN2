@@ -1,4 +1,4 @@
-package com.project.pin;
+package com.project.pin.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.pin.controller.GoalController;

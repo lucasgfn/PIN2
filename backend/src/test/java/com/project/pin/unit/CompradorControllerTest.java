@@ -1,4 +1,4 @@
-package com.project.pin;
+package com.project.pin.unit;
 
 
 import org.junit.jupiter.api.Test;

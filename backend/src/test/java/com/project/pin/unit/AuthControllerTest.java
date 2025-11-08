@@ -1,4 +1,4 @@
-package com.project.pin;
+package com.project.pin.unit;
 
 import com.project.pin.entity.Comprador;
 import com.project.pin.repository.CompradorRepository;
@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
+
 class AuthControllerTest {
     @Mock
     private CompradorRepository compradorRepository;
