@@ -21,7 +21,7 @@ public class Livro {
     @Column(name = "id_livro")
     private Long id;
     @Column(name = "isbn")
-    private String ibsn;
+    private String isbn;
     @Column(name = "nomeLivro")
     private String nomeLivro;
     @Column(name = "sinopse")

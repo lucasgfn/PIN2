@@ -6,9 +6,10 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.lang.NonNull;
 
-import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 @AllArgsConstructor

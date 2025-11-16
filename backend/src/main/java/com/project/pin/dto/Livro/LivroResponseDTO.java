@@ -17,7 +17,7 @@ public record LivroResponseDTO(
     public LivroResponseDTO(Livro livro) {
         this(
                 livro.getId(),
-                livro.getIbsn(),
+                livro.getIsbn(),
                 livro.getNomeLivro(),
                 livro.getSinopse(),
                 livro.getPages(),

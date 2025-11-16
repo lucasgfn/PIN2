@@ -1,4 +1,4 @@
-package com.project.pin.unit;
+package com.project.pin.extras;
 
 import com.project.pin.entity.Comprador;
 import com.project.pin.repository.CompradorRepository;
@@ -11,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;

@@ -32,7 +32,7 @@ public class LivroService {
         Autor autor = buscarAutor(livroRequestDTO.autorId());
 
         newLivro.setNomeLivro(livroRequestDTO.nomeLivro());
-        newLivro.setIbsn(livroRequestDTO.isbn());
+        newLivro.setIsbn(livroRequestDTO.isbn());
         newLivro.setSinopse(livroRequestDTO.sinopse());
         newLivro.setPages(livroRequestDTO.pages());
         newLivro.setAnoPublicado(livroRequestDTO.anoPublicado());
@@ -79,7 +79,7 @@ public class LivroService {
         return livroRepository.findById(id)
                 .map(livro -> {
                     livro.setNomeLivro(livroRequestDTO.nomeLivro());
-                    livro.setIbsn(livroRequestDTO.isbn());
+                    livro.setIsbn(livroRequestDTO.isbn());
                     livro.setSinopse(livroRequestDTO.sinopse());
                     livro.setPages(livroRequestDTO.pages());
                     livro.setAnoPublicado(livroRequestDTO.anoPublicado());
@@ -120,7 +120,7 @@ public class LivroService {
 
         return new LivroResponseDTO(
                 livro.getId(),
-                livro.getIbsn(),
+                livro.getIsbn(),
                 livro.getNomeLivro(),
                 livro.getSinopse(),
                 livro.getPages(),

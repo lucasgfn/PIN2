@@ -1,6 +1,5 @@
-package com.project.pin.unit;
+package com.project.pin.extras;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.pin.controller.GoalController;
 import com.project.pin.entity.Comprador;
 import com.project.pin.entity.Goal;

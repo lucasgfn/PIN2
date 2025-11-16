@@ -4,12 +4,13 @@ import com.project.pin.dto.Comprador.CompradorRequestDTO;
 import com.project.pin.dto.Comprador.CompradorResponseDTO;
 import com.project.pin.entity.Comprador;
 import com.project.pin.service.CompradorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.*;
+
 
 @RestController
 @RequestMapping("/compradores")
@@ -44,7 +45,7 @@ public class CompradorController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/username/{username}")
     public Comprador getUsuarioByUsername(@PathVariable String username) {
         return compradorService.buscarPorUsername(username);
     }

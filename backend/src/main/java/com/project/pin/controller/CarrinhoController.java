@@ -37,8 +37,9 @@ public class CarrinhoController {
 
 
     @DeleteMapping("/remover/{livroId}")
-    public void removerItem(@PathVariable Long livroId) {
+    public ResponseEntity<Void>  removerItem(@PathVariable Long livroId) {
         carrinhoSession.removerItem(livroId);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/finalizar/{usuarioId}")
