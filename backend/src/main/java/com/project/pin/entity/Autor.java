@@ -2,6 +2,7 @@ package com.project.pin.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Autor {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor")
     private Long id;
+    @NotBlank(message = "O campo (nome) é obrigatório")
     @Column(name = "nome_autor")
     private String nome;
     @Column(name = "sobre")
