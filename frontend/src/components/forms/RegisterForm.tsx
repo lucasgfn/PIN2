@@ -37,41 +37,42 @@ const RegisterForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+
     let imagemBase64: string | undefined;
     if (imagem) {
       imagemBase64 = await fileToBase64(imagem);
     }
-  
+
     const newUser: IUserData = {
-        tipo_usuario: "comprador", 
-        cpf,
-        email,
-        password,
-        nome,
-        username,
-        tipo_admin: false, 
-        bairro,
-        cep,
-        cidade,
-        estado,
-        img: imagemBase64,
-        nivel: 1, 
-        desconto: false, 
-        rua: endereco,
-        telefone
+      tipo_usuario: "comprador",
+      cpf,
+      email,
+      password,
+      nome,
+      username,
+      tipo_admin: false,
+      bairro,
+      cep,
+      cidade,
+      estado,
+      img: imagemBase64,
+      nivel: 1,
+      desconto: false,
+      rua: endereco,
+      telefone,
     };
-  
-       // CORREÇÃO CRÍTICA: Use callbacks onSuccess e onError para controlar o fluxo.
+
+    // CORREÇÃO CRÍTICA: Uso de callbacks onSuccess e onError para controle de fluxo assíncrono.
+    // Isso garante que o redirecionamento (navegação) só ocorra após o sucesso da API.
     mutation.mutate(newUser, {
-        onSuccess: () => {
-            navigate("/login");
-        },
-        onError: (error) => {
-            setError("Erro ao cadastrar Usuario");
-        }
+      onSuccess: () => {
+        navigate("/login");
+      },
+      onError: (error) => {
+        // Exibe a mensagem de erro do catch do backend
+        setError("Erro ao cadastrar Usuario");
+      },
     });
-   
   };
 
   return (
@@ -86,7 +87,7 @@ const RegisterForm: React.FC = () => {
           height: "auto",
         }}
       />
-      <Container maxWidth="lg" >
+      <Container maxWidth="lg">
         <Paper
           elevation={3}
           sx={{
@@ -102,6 +103,7 @@ const RegisterForm: React.FC = () => {
             sx={{ backgroundColor: "#F5F5F5" }}
             onSubmit={handleSubmit}
           >
+            {/* ... Campos CustomTextField ... */}
             <CustomTextField
               label="Username"
               type="text"
@@ -180,9 +182,19 @@ const RegisterForm: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
+            {/* Campo de Imagem e Botão Salvar */}
             <Box mt={3}>
               <ImageUpload onImageSelect={(file) => setImagem(file)} />
             </Box>
+
+            {/* Exibição do erro do backend */}
+            {error && (
+              <Box color="red" mt={1} textAlign="center">
+                {error}
+              </Box>
+            )}
+
             <Box display="flex" justifyContent="center" mt={4}>
               <Button
                 variant="outlined"
@@ -201,11 +213,10 @@ const RegisterForm: React.FC = () => {
               >
                 Salvar
               </Button>
-          </Box>
+            </Box>
           </Box>
         </Paper>
       </Container>
-     
     </Box>
   );
 };
