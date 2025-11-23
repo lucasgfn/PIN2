@@ -36,14 +36,14 @@ const RegisterForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    try{
-      let imagemBase64: string | undefined;
-      if (imagem) {
-        imagemBase64 = await fileToBase64(imagem);
-      }
+    setError(null);
+    
+    let imagemBase64: string | undefined;
+    if (imagem) {
+      imagemBase64 = await fileToBase64(imagem);
+    }
   
-      const newUser: IUserData = {
+    const newUser: IUserData = {
         tipo_usuario: "comprador", 
         cpf,
         email,
@@ -60,15 +60,17 @@ const RegisterForm: React.FC = () => {
         desconto: false, 
         rua: endereco,
         telefone
-      };
+    };
   
-      
-      mutation.mutate(newUser);
-      navigate("/login");
-    }catch{
-      setError("Erro ao cadastrar Usuario");
-    }
-    
+       // CORREÇÃO CRÍTICA: Use callbacks onSuccess e onError para controlar o fluxo.
+    mutation.mutate(newUser, {
+        onSuccess: () => {
+            navigate("/login");
+        },
+        onError: (error) => {
+            setError("Erro ao cadastrar Usuario");
+        }
+    });
    
   };
 
