@@ -46,9 +46,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         password,
       });
 
-      const userResponse = await axios.get(
-        `http://localhost:8080/compradores/${username}`
-      );
+     const userResponse = await axios.get(
+       `http://localhost:8080/compradores/username/${username}`
+     );
 
       setUserData(userResponse.data as IUserData);
       setIsLogged(true);
